@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RETRANSFY</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/data.css" />
+  </head>
+
+  <body>
+    <div class="source">
+      <!-- -->
+      <div class="log_c" id="log_c">
+        <img src="media/Logo.png" class="rt_logo" />
+        <span id="welcome" class="welcome"></span>
+        <br />
+        <form id="log">
+          <input type="text" id="number-log" name="number-log" />
+          <div class="az-p">
+            <input type="password" id="az-log" name="az-log" />
+            <img src="media/visibility_FILL0_wght400_GRAD0_opsz24.svg" class="visible" />
+            <img src="media/visibility_off_FILL0_wght400_GRAD0_opsz24.svg" class="invisible" />
+          </div>
+          <button type="submit" class="btn">Login</button>
+        </form>
+        <span class="fgt" id="fgt">I forgot my password</span> <br />
+        <span id="noAccount">Don't have an account?</span>
+        <span class="ss" id="ss">Sign up</span>
+        <p id="l_error" style="display: none"></p>
+      </div>
+
+      <!-- -->
+      <div class="sign_c" id="sign_c">
+        <img src="media/Logo.png" class="rt_logo" />
+        <span>Sign Up</span>
+        <form id="sign">
+          <select id="country" autocomplete="off">
+            <option value="">Select your country</option>
+            <option value="GHANA">Ghana</option>
+            <option value="TOGO">Togo</option>
+            <option value="BENIN">Benin</option>
+            <option value="IVORY COAST">Ivory Coast</option>
+            <option value="BURKINA FASO">Burkina Faso</option>
+            <option value="SENEGAL">Senegal</option>
+          </select>
+          <input type="text" id="first" name="first" autocomplete="off" />
+          <input type="text" id="last" name="last" autocomplete="off" />
+          <input type="text" id="phone" name="phone" autocomplete="off" />
+          <div class="az-p">
+            <input type="password" id="az" name="az" autocomplete="off" />
+            <img src="media/visibility_FILL0_wght400_GRAD0_opsz24.svg" class="visible" />
+            <img src="media/visibility_off_FILL0_wght400_GRAD0_opsz24.svg" class="invisible" />
+          </div>
+          <div class="az-p">
+            <input type="password" id="az-confirm" name="az-confirm" autocomplete="off" />
+            <img src="media/visibility_FILL0_wght400_GRAD0_opsz24.svg" class="visible" />
+            <img src="media/visibility_off_FILL0_wght400_GRAD0_opsz24.svg" class="invisible" />
+          </div>
+          <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <span>Already have an account?</span>
+        <span class="ll" id="ll">Log in</span>
+        <p id="s_error" style="display: none"></p>
+      </div>
+
+      <div id="az-restart-bx" class="az-restart-bx">
+        <img src="media/Logo.png" class="rt_logo" />
+        <p id="restart-prompt"></p>
+        <form id="az-restart" class="az-restart">
+          <input type="text" id="az-last" name="last" placeholder="Lastname" autocomplete="off" />
+          <input type="text" id="az-phone" name="phone" placeholder="Phone number" autocomplete="off" />
+          <input type="text" id="az-country" name="phone" placeholder="Country" autocomplete="off" />
+          <button type="submit" class="btn">Send</button>
+          <p id="restart_error" style="display: none"></p>
+        </form>
+        <form id="az-otp" class="az-otp">
+          <input type="text" id="az-code" name="code" placeholder="Enter the code" autocomplete="off" />
+          <button type="submit" class="btn">Send</button>
+          <p id="otp_error" style="display: none"></p>
+        </form>
+
+        <form id="az-new" class="az-new">
+          <input type="text" id="az-new-set" name="az-new" placeholder="Create a new password" autocomplete="off" />
+          <input type="text" id="az-new-confirm" name="az-new-confirm" placeholder="Confirm password" autocomplete="off" />
+          <button type="submit" class="btn">Confirm</button>
+          <p id="azNew_error" style="display: none"></p>
+        </form>
+      </div>
+
+      <!--  -->
+      <div class="terms-bx" id="terms-bx">
+        <img src="media/Logo.png" class="rt_logo" />
+        <p>You are almost there!</p>
+        <span>Please read carefully our terms</span>
+        <br />
+        <div class="terms">
+          <h3>Terms and Conditions</h3>
+          <p class="term-text"></p>
+        </div>
+        <div class="agree-bx">
+          <input type="checkbox" class="agree-check" id="agree-check" />
+          <span>I have read and agreed to the terms of Retransfy</span>
+        </div>
+        <button class="agree_continue" disabled>Continue</button>
+      </div>
+
+      <!--  -->
+      <div class="load" id="load">
+        <img src="media/Logo.png" class="load-logo" />
+      </div>
+
+      <!--  -->
+      <div class="root_bx" id="root">
+        <div class="menu_bar" id="menuBar">
+          <div class="menu_bx">
+            <div class="menu_icon_title">
+              <img src="media/icons8-menu.svg" alt="Menu Icon" class="menu_icon" id="menuImage" />
+              <h3 class="menu_title" id="Menu">Menu</h3>
+            </div>
+          </div>
+          <div class="logo_flags">
+            <img src="media/Logo.png" alt="Retransfy's Logo" class="logo" id="logo" />
+            <div class="country_flags">
+              <img src="media/1200px-Flag_of_Ghana.svg.png" alt="Ghana Flag" />
+              <img src="media/flag-800.png" alt="Togo Flag" />
+              <img src="media/Flag-of-Benin.jpg" alt="Benin Flag" />
+              <img src="media/Flag_of_Côte_d'Ivoire.svg.png" alt="Ivory Coast Flag" />
+              <img src="media/flag-of-burkina-faso.jpg" alt="Burkina Faso Flag" />
+              <img src="media/download.png" alt="Senegal Flag" />
+            </div>
+          </div>
+        </div>
+        <div class="user-bx">
+          <span id="user"></span>
+        </div>
+
+        <div class="main_menu" id="mainMenu">
+          <img src="media/close-window-xxl.png" class="close_menu_window" id="closeWindow" />
+          <img src="media/Logo.png" class="main_menu_logo" />
+          <p id="myAccount">My Account</p>
+          <p id="myTranx">My Transactions</p>
+          <p id="todayRate">Today's Rate</p>
+          <p id="customerService">Customer Service</p>
+          <p id="ourPolicies">Our Policies</p>
+          <p id="settings">Settings</p>
+          <p id="logOut">Log out</p>
+        </div>
+
+        <!--  -->
+        <div class="confirm" id="confirm">
+          <div class="confirm_header">
+            <p id="confirmText"></p>
+          </div>
+          <div class="confirm_options_cover">
+            <button id="noOption">No</button>
+            <button id="yesOption">Yes</button>
+          </div>
+        </div>
+
+        <!--  -->
+        <div class="main_cvx" id="main_cvx">
+          <form id="cvx-form">
+            <label for="senderCountry">Sender's country</label>
+            <select id="senderCountry" name="senderCountry">
+              <option value="GHANA">Ghana</option>
+              <option value="TOGO">Togo</option>
+              <option value="BENIN">Benin</option>
+              <option value="IVORY COAST">Ivory Coast</option>
+              <option value="BURKINA FASO">Burkina Faso</option>
+              <option value="SENEGAL">Senegal</option>
+            </select>
+
+            <label for="receiverCountry">Receiver's country</label>
+            <select id="receiverCountry" name="receiverCountry">
+              <option value="TOGO">Togo</option>
+              <option value="BENIN">Benin</option>
+              <option value="IVORY COAST">Ivory Coast</option>
+              <option value="BURKINA FASO">Burkina Faso</option>
+              <option value="SENEGAL">Senegal</option>
+              <option value="GHANA">Ghana</option>
+            </select>
+
+            <label for="sendAmount">Amount to send</label>
+            <div class="amount-to-send-bx">
+              <input type="number" id="sendAmount" name="sendAmount" class="sendAmount" />
+              <span id="amount-to-send-span" class="amount-to-send-span"></span>
+            </div>
+
+            <label for="receiveAmount">Amount to receive</label>
+            <div class="amount-to-receive-bx">
+              <input type="number" id="receiveAmount" name="receiveAmount" class="receiveAmount" />
+              <span id="amount-to-receive-span" class="amount-to-receive-span"></span>
+            </div>
+
+            <span class="showFee" id="showFee"></span>
+
+            <div class="withdrawal_fee_container" id="withdrawalFeeContainer">
+              <input type="checkbox" id="withdrawalFee" class="check-withdrawal" />
+              <p class="withdrawal_fee_title" id="withdrawalFeeTitle">Add withdrawal fee</p>
+            </div>
+            <!-- error -->
+            <p id="error" class="error"></p>
+
+            <div class="cvx" id="cvx">
+              <p>Amount to receive: <span id="rslt1"></span></p>
+              <p>Amount to send: <span id="rslt2"></span></p>
+              <p>Retransfy fee: <span id="rslt3"></span></p>
+              <p>Total to pay: <span id="rslt4"></span></p>
+            </div>
+
+            <div class="copy_buttons" id="copy_buttons">
+              <p>Copy</p>
+              <button type="button" id="copy">EN</button>
+              <button type="button" id="copier">FR</button>
+            </div>
+
+            <button type="submit" class="preview" id="preview">Continue</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="js/index.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/set.js"></script>
+  </body>
+</html>
