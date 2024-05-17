@@ -338,9 +338,9 @@ function assignTransactionFee() {
   let transactionFee = 0;
   //(GHANA to TOGO)
   if (senderCountry === "GHANA" && receiverCountry === "TOGO") {
-    if (amountToSend >= ghsToXof && amountToSend <= 120) {
+    if (amountToSend >= ghsToXof && amountToSend <= 130) {
       transactionFee = 5;
-    } else if (amountToSend >= 121 && amountToSend <= 500) {
+    } else if (amountToSend >= 131 && amountToSend <= 500) {
       transactionFee = 10;
     } else if (amountToSend >= 501 && amountToSend <= 800) {
       transactionFee = 15;
@@ -372,9 +372,9 @@ function assignTransactionFee() {
   }
   //(GHANA to BCB)
   else if (senderCountry === "GHANA" && receiverCountry !== "GHANA" && receiverCountry !== "TOGO") {
-    if (amountToSend >= ghsToXof && amountToSend <= 120) {
+    if (amountToSend >= ghsToXof && amountToSend <= 130) {
       transactionFee = 10;
-    } else if (amountToSend >= 121 && amountToSend <= 500) {
+    } else if (amountToSend >= 131 && amountToSend <= 500) {
       transactionFee = 15;
     } else if (amountToSend >= 501 && amountToSend <= 800) {
       transactionFee = 20;
