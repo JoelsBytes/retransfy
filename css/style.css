@@ -65,6 +65,7 @@ input:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+   background-color: white;
   width: 75px;
   padding: 10px 5px;
   text-align: center;
