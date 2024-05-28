@@ -209,7 +209,6 @@ header {
 }
 
 .copyChange {
-  position: relative;
   margin: 15px 10px;
   animation: shrink-grow 0.2s ease;
 }
