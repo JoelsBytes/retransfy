@@ -1,0 +1,361 @@
+.rct-bx {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 5px;
+}
+
+.rct-top {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffd666;
+  padding: 5px;
+}
+
+.form-rct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  font-family: Helvetica, sans-serif;
+}
+
+label {
+  color: #076c5e;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#amountReceived,
+#sender,
+#receiver,
+#trx {
+  display: block;
+  border: solid 1px #076c5e;
+  width: 300px;
+  margin-top: 2px;
+  padding: 12px;
+  font-size: 16px;
+  box-shadow: 2px 2px 4px rgb(73, 73, 73, 0.3);
+  background-color: white;
+}
+
+input:focus {
+  outline: none;
+}
+
+.time {
+  box-shadow: 2px 2px 4px rgb(73, 73, 73, 0.3);
+  background-color: white;
+  appearance: none;
+  width: 120px;
+  padding: 8px 10px;
+  margin: 0;
+  border-style: none;
+  font-size: 14px;
+}
+
+#senderCountry,
+#receiverCountry {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 75px;
+  padding: 10px 5px;
+  text-align: center;
+  font-size: 14px;
+  border-style: none;
+  box-shadow: 2px 2px 4px rgb(73, 73, 73, 0.3);
+}
+
+select:focus {
+  outline: none;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 5px;
+}
+
+.rct-submit {
+  width: 300px;
+  background-color: #076c5e;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  border-style: none;
+  box-shadow: 2px 2px 4px rgb(73, 73, 73, 0.3);
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.rct-response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 330px;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+#response {
+  line-height: 18px;
+  border: 1px solid #d1f8f3;
+  padding: 15px;
+  color: rgb(99, 99, 99);
+  text-align: left;
+}
+
+.all-trx {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin-top: 20px;
+  color: #076c5e;
+  border: 1px solid gray;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.all-trx:hover {
+  background-color: #ffe8a8;
+}
+
+.report {
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: Helvetica, sans-serif;
+  color: #b80404;
+}
+
+.report:hover {
+  color: #ff3636;
+}
+
+#goHome {
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  font-family: Helvetica, sans-serif;
+  color: #076c5e;
+}
+
+#goHome:hover {
+  color: #02ad97;
+}
+
+#new-trx {
+  width: 220px;
+  background-color: #ffd666;
+  color: #076c5e;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  border-style: none;
+  box-shadow: 1px 1px 2px rgb(73, 73, 73, 0.3);
+  cursor: pointer;
+  margin-top: 10px;
+  border: 1px solid #ffffff;
+}
+
+#new-trx:hover {
+  border: 1px solid #076c5e;
+  background-color: #ffffff;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.api-bx {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#currency {
+  display: block;
+  border: solid 1px #076c5e;
+  width: 120px;
+  margin-top: 5px;
+  padding: 12px;
+  font-size: 14px;
+  background-color: #ffd666;
+  color: #076c5e;
+  font-weight: bold;
+}
+
+#buyBN {
+  display: block;
+  background-color: darkgreen;
+  color: white;
+
+  border: solid 1px #076c5e;
+  width: 300px;
+  margin-top: 5px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+#sellBN {
+  display: block;
+  background-color: darkred;
+  color: white;
+  border: solid 1px #076c5e;
+  width: 300px;
+  margin-top: 5px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+#amount {
+  display: block;
+  background-color: aliceblue;
+  border: solid 1px #076c5e;
+  width: 300px;
+  margin-top: 5px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+#paying {
+  display: block;
+  background-color: yellow;
+  border: solid 1px #076c5e;
+  width: 300px;
+  margin-top: 5px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.api-submit {
+  background-color: #076c5e;
+  color: #fff;
+  border: none;
+  width: 300px;
+  margin-top: 15px;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+#api p {
+  margin-top: 5px;
+  font-size: 14px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+/*  */
+.rate-bx {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.rate-bx h2 {
+  color: #076c5e;
+}
+
+.rate-d {
+  white-space: pre-line;
+  background-color: #ffffff;
+  border: 2px solid rgb(228, 228, 228);
+  padding: 10px 25px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #076c5e;
+  line-height: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.wrapcopy {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#copyEn {
+  border: solid 1px #076c5e;
+  margin-right: 30px;
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#copyFr {
+  border: solid 1px #076c5e;
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------------------- */
+.net-bx {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#net-country {
+  display: block;
+  border: solid 1px #076c5e;
+  width: 300px;
+  padding: 12px;
+  font-size: 16px;
+  box-shadow: 2px 2px 4px rgb(73, 73, 73, 0.3);
+  background-color: white;
+}
+
+#net-phone {
+  display: block;
+  border: solid 1px #076c5e;
+  width: 300px;
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 16px;
+  box-shadow: 2px 2px 4px rgb(73, 73, 73, 0.3);
+  background-color: white;
+}
+
+#error-net {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+#net-display {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #076c5e;
+  font-weight: bold;
+  margin-top: 20px;
+  background-color: #fff2cd;
+  padding: 5px 10px;
+}
+
+.net-btn {
+  width: 300px;
+  background-color: #076c5e;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  border-style: none;
+  box-shadow: 2px 2px 4px rgb(73, 73, 73, 0.3);
+  cursor: pointer;
+  margin-top: 10px;
+}
