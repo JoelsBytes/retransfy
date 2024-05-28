@@ -255,20 +255,12 @@ form.addEventListener("submit", (event) => {
 
     let totalPaid = amountToSend + transactionFee;
     if (senderCountry === "GHANA" && receiverCountry !== "GHANA") {
-      resp.innerHTML = `Transaction successful via Retransfy.
-You've sent ${amountReceived.toLocaleString(
-        "fr-FR"
-      )} FCFA to ${receiver} ${rc.toUpperCase()} at a rate of ${ghXof} | ${senderCountry} to ${receiverCountry};
-${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of GHS ${totalPaid.toFixed(
-        2
-      )}, including a transaction fee of GHS ${transactionFee.toFixed(2)} via ${sender} ${sd.toUpperCase()}.`;
-    } else if (senderCountry !== "GHANA" && receiverCountry === "GHANA") {
-      resp.innerHTML = `Transaction successful via Retransfy.
-You've sent GHS ${amountReceived.toFixed(2)} to ${receiver} ${rc.toUpperCase()} at a rate of ${xofgh} | ${senderCountry} to ${receiverCountry};
-${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of ${totalPaid.toLocaleString(
-        "fr-FR"
-      )}, including a transaction fee of ${transactionFee.toLocaleString("fr-FR")} via ${sender} ${sd.toUpperCase()}.`;
-    }
+resp.innerHTML = `Transaction successful via Retransfy.You've sent ${amountReceived.toLocaleString("fr-FR")} FCFA to ${receiver} ${rc.toUpperCase()} at a rate of ${ghXof} | ${senderCountry} to ${receiverCountry};
+${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of GHS ${totalPaid.toFixed(2)}, including a transaction fee of GHS ${transactionFee.toFixed(2)} via ${sender} ${sd.toUpperCase()}.`;
+} else if (senderCountry !== "GHANA" && receiverCountry === "GHANA") {
+resp.innerHTML = `Transaction successful via Retransfy.You've sent GHS ${amountReceived.toFixed(2)} to ${receiver} ${rc.toUpperCase()} at a rate of ${xofgh} | ${senderCountry} to ${receiverCountry};
+${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of ${totalPaid.toLocaleString("fr-FR")}, including a transaction fee of ${transactionFee.toLocaleString("fr-FR")} via ${sender} ${sd.toUpperCase()}.`;
+}
 
     errorM.style.display = "none";
     form.style.display = "none";
