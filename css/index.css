@@ -59,16 +59,6 @@ header {
   color: #ffd666;
 }
 
-.nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.nav-links li a:hover {
-  color: #ffd666;
-}
-
 .burger {
   display: none;
   cursor: pointer;
