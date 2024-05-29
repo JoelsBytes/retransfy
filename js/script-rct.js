@@ -110,7 +110,7 @@ form.addEventListener("submit", (event) => {
     }
     copyButton.classList.remove("copyChange");
     const resp = document.getElementById("response");
-    const ghXof = 25;
+    const ghXof = 25.5;
     const xofgh = ghXof - 1;
     let transactionFee;
     let amountToSend;
