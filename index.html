@@ -19,6 +19,7 @@
           <li id="apiHref">API</li>
           <li id="rateHref">Rate</li>
           <li id="netHref">Find Network</li>
+          <li id="custHref">Search</li>
         </ul>
         <div class="burger" id="burger">
           <div class="line1"></div>
@@ -31,7 +32,7 @@
       <div id="rct-bx" class="rct-bx">
         <form action="" id="form-rct" class="form-rct">
           <div class="rct-top">
-            <input type="time" id="time" class="time" />
+            <input type="time" id="time" class="time" placeholder="Time" />
             <select name="senderCountry" id="senderCountry">
               <option value="GHANA">Ghana</option>
               <option value="TOGO">Togo</option>
@@ -117,6 +118,15 @@
         <p id="error-net" style="display: none"></p>
         <p id="net-display" style="display: none"></p>
       </div>
+
+      <div class="cust-bx" id="cust-bx" style="display: none">
+        <form id="client">
+          <input type="number" id="cust-number" placeholder="Enter Phone number" />
+          <button type="submit" class="cust-btn">Search</button>
+        </form>
+        <p id="cust-error" style="display: none"></p>
+        <p id="cust-display" style="display: none"></p>
+      </div>
     </div>
     <footer class="footer">
       <div class="country_flags">
@@ -137,6 +147,7 @@
     <script src="js/script-rct.js"></script>
     <script src="js/script-rate.js"></script>
     <script src="js/script-net.js"></script>
+    <script src="js/script-cust.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
   </body>
 </html>
