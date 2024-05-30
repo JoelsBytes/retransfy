@@ -23,7 +23,7 @@ form.addEventListener("submit", (event) => {
   const year = currentDate.getFullYear();
   const formattedDate = `${day}/${month}/${year}`;
 
-  const ghXof = 25;
+  const ghXof = 25.5;
   const xofgh = ghXof - 1;
 
   const time = document.getElementById("time").value;
