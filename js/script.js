@@ -20,11 +20,57 @@ const netHref = document.getElementById("netHref");
 const custBx = document.getElementById("cust-bx");
 const custHref = document.getElementById("custHref");
 
-rctBx.style.display = "flex";
-apiBx.style.display = "none";
-rateBx.style.display = "none";
-netBx.style.display = "none";
-custBx.style.display = "none";
+const cvxBx = document.getElementById("main_cvx");
+const cvxHref = document.getElementById("cvxHref");
+
+const onTopBx = document.getElementById("onTopBx");
+const onTop = document.getElementById("onTop");
+const onTopForm = document.getElementById("order-form");
+
+const openN = localStorage.getItem("order");
+if (!openN) {
+  rctBx.style.display = "none";
+  apiBx.style.display = "none";
+  rateBx.style.display = "flex";
+  netBx.style.display = "none";
+  custBx.style.display = "none";
+  cvxBx.style.display = "none";
+  onTopBx.style.display = "none";
+} else if (openN === "RCPT") {
+  rctBx.style.display = "flex";
+  apiBx.style.display = "none";
+  rateBx.style.display = "none";
+  netBx.style.display = "none";
+  custBx.style.display = "none";
+  cvxBx.style.display = "none";
+  onTopBx.style.display = "none";
+} else if (openN === "CVX") {
+  rctBx.style.display = "none";
+  apiBx.style.display = "none";
+  rateBx.style.display = "none";
+  netBx.style.display = "none";
+  custBx.style.display = "none";
+  cvxBx.style.display = "flex";
+  onTopBx.style.display = "none";
+}
+
+onTopForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const menuItem = document.getElementById("change-order").value;
+
+  if (!menuItem) {
+    return;
+  } else if (menuItem === "RCPT") {
+    localStorage.setItem("order", "RCPT");
+    window.location.reload();
+  } else if (menuItem === "CVX") {
+    localStorage.setItem("order", "CVX");
+    window.location.reload();
+  } else if (menuItem === "R") {
+    localStorage.removeItem("order");
+    window.location.reload();
+  }
+});
 
 rctHref.addEventListener("click", () => {
   rctBx.style.display = "flex";
@@ -32,6 +78,7 @@ rctHref.addEventListener("click", () => {
   rateBx.style.display = "none";
   netBx.style.display = "none";
   custBx.style.display = "none";
+  cvxBx.style.display = "none";
 });
 
 apiHref.addEventListener("click", () => {
@@ -41,6 +88,8 @@ apiHref.addEventListener("click", () => {
   netBx.style.display = "none";
   netBx.style.display = "none";
   custBx.style.display = "none";
+  cvxBx.style.display = "none";
+  onTopBx.style.display = "none";
 });
 
 rateHref.addEventListener("click", () => {
@@ -49,6 +98,8 @@ rateHref.addEventListener("click", () => {
   rateBx.style.display = "flex";
   netBx.style.display = "none";
   custBx.style.display = "none";
+  cvxBx.style.display = "none";
+  onTopBx.style.display = "none";
 });
 
 netHref.addEventListener("click", () => {
@@ -57,6 +108,8 @@ netHref.addEventListener("click", () => {
   rateBx.style.display = "none";
   netBx.style.display = "flex";
   custBx.style.display = "none";
+  cvxBx.style.display = "none";
+  onTopBx.style.display = "none";
 });
 
 custHref.addEventListener("click", () => {
@@ -65,4 +118,26 @@ custHref.addEventListener("click", () => {
   rateBx.style.display = "none";
   netBx.style.display = "none";
   custBx.style.display = "flex";
+  cvxBx.style.display = "none";
+  onTopBx.style.display = "none";
+});
+
+cvxHref.addEventListener("click", () => {
+  rctBx.style.display = "none";
+  apiBx.style.display = "none";
+  rateBx.style.display = "none";
+  netBx.style.display = "none";
+  custBx.style.display = "none";
+  cvxBx.style.display = "flex";
+  onTopBx.style.display = "none";
+});
+
+onTop.addEventListener("click", () => {
+  rctBx.style.display = "none";
+  apiBx.style.display = "none";
+  rateBx.style.display = "none";
+  netBx.style.display = "none";
+  custBx.style.display = "none";
+  cvxBx.style.display = "none";
+  onTopBx.style.display = "flex";
 });
