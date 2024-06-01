@@ -5,53 +5,40 @@ burger.addEventListener("click", () => {
   navLinks.classList.toggle("active");
 });
 
-const rctBx = document.getElementById("rct-bx");
-const rctHref = document.getElementById("rctHref");
-
-const apiBx = document.getElementById("api-bx");
-const apiHref = document.getElementById("apiHref");
-
-const rateBx = document.getElementById("rate-bx");
-const rateHref = document.getElementById("rateHref");
-
-const netBx = document.getElementById("net-bx");
-const netHref = document.getElementById("netHref");
-
-const custBx = document.getElementById("cust-bx");
-const custHref = document.getElementById("custHref");
-
-const cvxBx = document.getElementById("main_cvx");
-const cvxHref = document.getElementById("cvxHref");
-
-const onTopBx = document.getElementById("onTopBx");
 const onTop = document.getElementById("onTop");
+const cvxHref = document.getElementById("cvxHref");
+const custHref = document.getElementById("custHref");
+const netHref = document.getElementById("netHref");
+const rateHref = document.getElementById("rateHref");
+const rctHref = document.getElementById("rctHref");
+const apiHref = document.getElementById("apiHref");
+const apiBx = document.getElementById("api-bx");
+const rctBx = document.getElementById("rct-bx");
+const rateBx = document.getElementById("rate-bx");
+const netBx = document.getElementById("net-bx");
+const custBx = document.getElementById("cust-bx");
+const cvxBx = document.getElementById("main_cvx");
+const onTopBx = document.getElementById("onTopBx");
 const onTopForm = document.getElementById("order-form");
+
+function unoActivar(b, e, r, t, v, x, y) {
+  b.style.display = "flex";
+  e.style.display = "none";
+  r.style.display = "none";
+  t.style.display = "none";
+  v.style.display = "none";
+  x.style.display = "none";
+  y.style.display = "none";
+  navLinks.classList.remove("active");
+}
 
 const openN = localStorage.getItem("order");
 if (!openN) {
-  rctBx.style.display = "none";
-  apiBx.style.display = "none";
-  rateBx.style.display = "flex";
-  netBx.style.display = "none";
-  custBx.style.display = "none";
-  cvxBx.style.display = "none";
-  onTopBx.style.display = "none";
+  unoActivar(rateBx, rctBx, apiBx, custBx, netBx, cvxBx, onTopBx);
 } else if (openN === "RCPT") {
-  rctBx.style.display = "flex";
-  apiBx.style.display = "none";
-  rateBx.style.display = "none";
-  netBx.style.display = "none";
-  custBx.style.display = "none";
-  cvxBx.style.display = "none";
-  onTopBx.style.display = "none";
+  unoActivar(rctBx, rateBx, apiBx, custBx, netBx, cvxBx, onTopBx);
 } else if (openN === "CVX") {
-  rctBx.style.display = "none";
-  apiBx.style.display = "none";
-  rateBx.style.display = "none";
-  netBx.style.display = "none";
-  custBx.style.display = "none";
-  cvxBx.style.display = "flex";
-  onTopBx.style.display = "none";
+  unoActivar(cvxBx, rateBx, apiBx, custBx, netBx, rctBx, onTopBx);
 }
 
 onTopForm.addEventListener("submit", (event) => {
@@ -73,71 +60,29 @@ onTopForm.addEventListener("submit", (event) => {
 });
 
 rctHref.addEventListener("click", () => {
-  rctBx.style.display = "flex";
-  apiBx.style.display = "none";
-  rateBx.style.display = "none";
-  netBx.style.display = "none";
-  custBx.style.display = "none";
-  cvxBx.style.display = "none";
+  unoActivar(rctBx, rateBx, apiBx, custBx, netBx, cvxBx, onTopBx);
 });
 
 apiHref.addEventListener("click", () => {
-  rctBx.style.display = "none";
-  apiBx.style.display = "flex";
-  rateBx.style.display = "none";
-  netBx.style.display = "none";
-  netBx.style.display = "none";
-  custBx.style.display = "none";
-  cvxBx.style.display = "none";
-  onTopBx.style.display = "none";
+  unoActivar(apiBx, rateBx, rctBx, custBx, netBx, cvxBx, onTopBx);
 });
 
 rateHref.addEventListener("click", () => {
-  rctBx.style.display = "none";
-  apiBx.style.display = "none";
-  rateBx.style.display = "flex";
-  netBx.style.display = "none";
-  custBx.style.display = "none";
-  cvxBx.style.display = "none";
-  onTopBx.style.display = "none";
+  unoActivar(rateBx, apiBx, rctBx, custBx, netBx, cvxBx, onTopBx);
 });
 
 netHref.addEventListener("click", () => {
-  rctBx.style.display = "none";
-  apiBx.style.display = "none";
-  rateBx.style.display = "none";
-  netBx.style.display = "flex";
-  custBx.style.display = "none";
-  cvxBx.style.display = "none";
-  onTopBx.style.display = "none";
+  unoActivar(netBx, apiBx, rctBx, custBx, rateBx, cvxBx, onTopBx);
 });
 
 custHref.addEventListener("click", () => {
-  rctBx.style.display = "none";
-  apiBx.style.display = "none";
-  rateBx.style.display = "none";
-  netBx.style.display = "none";
-  custBx.style.display = "flex";
-  cvxBx.style.display = "none";
-  onTopBx.style.display = "none";
+  unoActivar(custBx, apiBx, rctBx, netBx, rateBx, cvxBx, onTopBx);
 });
 
 cvxHref.addEventListener("click", () => {
-  rctBx.style.display = "none";
-  apiBx.style.display = "none";
-  rateBx.style.display = "none";
-  netBx.style.display = "none";
-  custBx.style.display = "none";
-  cvxBx.style.display = "flex";
-  onTopBx.style.display = "none";
+  unoActivar(cvxBx, apiBx, rctBx, netBx, rateBx, custBx, onTopBx);
 });
 
 onTop.addEventListener("click", () => {
-  rctBx.style.display = "none";
-  apiBx.style.display = "none";
-  rateBx.style.display = "none";
-  netBx.style.display = "none";
-  custBx.style.display = "none";
-  cvxBx.style.display = "none";
-  onTopBx.style.display = "flex";
+  unoActivar(onTopBx, cvxBx, apiBx, rctBx, netBx, rateBx, custBx);
 });
