@@ -1,12 +1,14 @@
-let usn = [];
+let usn = {};
 
 async function loadUsn() {
   const response = await fetch("clou/uft.xlsx");
   const data = await response.arrayBuffer();
   const workbook = XLSX.read(data, { type: "array" });
-  const sheetName = workbook.SheetNames[0];
-  const worksheet = workbook.Sheets[sheetName];
-  usn = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: true });
+
+  workbook.SheetNames.forEach((sheetName) => {
+    const worksheet = workbook.Sheets[sheetName];
+    usn[sheetName] = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: true });
+  });
 }
 
 loadUsn();
@@ -183,12 +185,18 @@ form.addEventListener("submit", (event) => {
     let rc = "";
     let sd = "";
 
-    for (let i = 0; i < usn.length; i++) {
-      if (usn[i][1] == receiver) {
-        rc = usn[i][0];
-      }
-      if (usn[i][1] == sender) {
-        sd = usn[i][0];
+    for (const sheetName in usn) {
+      const sheetData = usn[sheetName];
+      for (let i = 0; i < sheetData.length; i++) {
+        if (sheetData[i][1] == sender) {
+          sd = sheetData[i][0];
+        }
+
+        if (sheetData[i][1] == receiver) {
+          rc = sheetData[i][0];
+        }
+
+        if (rc && sd) break;
       }
       if (rc && sd) break;
     }
