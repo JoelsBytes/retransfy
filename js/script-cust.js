@@ -1,12 +1,14 @@
-let uftx = [];
+let uftx = {};
 
 async function loadUftx() {
   const response = await fetch("cle/uftx.xlsx");
   const data = await response.arrayBuffer();
   const workbook = XLSX.read(data, { type: "array" });
-  const sheetName = workbook.SheetNames[0];
-  const worksheet = workbook.Sheets[sheetName];
-  uftx = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: true });
+
+  workbook.SheetNames.forEach((sheetName) => {
+    const worksheet = workbook.Sheets[sheetName];
+    uftx[sheetName] = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: true });
+  });
 }
 
 loadUftx();
@@ -39,9 +41,13 @@ formCust.addEventListener("submit", (event) => {
   } else {
     let user = "";
 
-    for (let i = 0; i < uftx.length; i++) {
-      if (uftx[i][1] == sender) {
-        user = uftx[i][0];
+    for (const sheetName in uftx) {
+      const sheetData = uftx[sheetName];
+      for (let i = 0; i < sheetData.length; i++) {
+        if (sheetData[i][1] == sender) {
+          user = sheetData[i][0];
+          break;
+        }
       }
       if (user) break;
     }
