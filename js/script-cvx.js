@@ -153,6 +153,32 @@ function adjustDecimal(number) {
   }
 }
 
+function adjustDecimal2(number) {
+  if (number % 1 === 0) {
+    return number;
+  } else if (number % 1 <= 0.1) {
+    return Math.floor(number);
+  } else if (number % 1 > 0.1 && number % 1 <= 0.2) {
+    return Math.floor(number) + 0.1;
+  } else if (number % 1 > 0.2 && number % 1 <= 0.3) {
+    return Math.floor(number) + 0.2;
+  } else if (number % 1 > 0.3 && number % 1 <= 0.4) {
+    return Math.floor(number) + 0.3;
+  } else if (number % 1 > 0.4 && number % 1 <= 0.5) {
+    return Math.floor(number) + 0.4;
+  } else if (number % 1 > 0.5 && number % 1 <= 0.6) {
+    return Math.floor(number) + 0.5;
+  } else if (number % 1 > 0.6 && number % 1 <= 0.7) {
+    return Math.floor(number) + 0.6;
+  } else if (number % 1 > 0.7 && number % 1 <= 0.8) {
+    return Math.floor(number) + 0.7;
+  } else if (number % 1 > 0.8 && number % 1 <= 0.9) {
+    return Math.floor(number) + 0.8;
+  } else if (number % 1 > 0.9) {
+    return Math.floor(number) + 0.9;
+  }
+}
+
 function countryChangeError() {
   spanSendAmount.innerText = "";
   spanReceiveAmount.innerText = "";
@@ -269,7 +295,7 @@ function CalculateAmountToReceive() {
     showFee.innerText = `Retransfy fee: GHS ${transactionFee.toFixed(2)}`;
     clearError();
   } else if (senderCountry !== "GHANA" && receiverCountry === "GHANA" && amountToSend >= 1000 && amountToSend < 90000000) {
-    amountToreceive = parseFloat(adjustDecimal((amountToSend / 1000) * xofToGhs)).toFixed(2);
+    amountToreceive = parseFloat(adjustDecimal2((amountToSend / 1000) * xofToGhs)).toFixed(2);
     receiveAmountInput.value = amountToreceive;
     spanSendAmount.innerText = "FCFA";
     spanReceiveAmount.innerText = "GHS";
@@ -427,7 +453,7 @@ withdrawalCheck.addEventListener("change", () => {
     preview.style.display = "block";
     run();
   }
-  // copyWrap.style.display = "none";
+  copyWrap.style.display = "none";
   cvx.style.display = "none";
 });
 
