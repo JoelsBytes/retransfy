@@ -42,10 +42,23 @@ form.addEventListener("submit", (event) => {
   receiver = receiver.replace(/\+233|00233/g, "0");
   receiver = receiver.replace(/[-_=/.:;'"]/g, "");
   let sender = document.getElementById("sender").value.trim();
-  if (sender === "1") {
+  if (senderCountry === "GHANA" && sender === "1") {
     sender = "0200000000";
     a = true;
+  } else if (senderCountry === "TOGO" && sender === "1") {
+    sender = "90000000";
+    a = true;
+  } else if (senderCountry === "BENIN" && sender === "1") {
+    sender = "60000000";
+    a = true;
+  } else if (senderCountry === "IVORY COAST" && sender === "1") {
+    sender = "0100000000";
+    a = true;
+  } else if (senderCountry === "BURKINA FASO" && sender === "1") {
+    sender = "55000000";
+    a = true;
   }
+
   sender = sender.replace(/\s/g, "");
   sender = sender.replace(/\+228|\+229|\+225|\+226|\+221|\+223|00228|00229|00225|00226|00221|00223/g, "");
   sender = sender.replace(/\+233|00233/g, "0");
@@ -86,7 +99,7 @@ form.addEventListener("submit", (event) => {
       prefix = sender.slice(0, 2);
       validPrefixes = ["05", "06", "07", "54", "55", "56", "57", "64", "65", "66", "77", "01", "02", "03", "51", "52", "53", "60", "61", "62", "63"];
 
-      if (validPrefixes.includes(prefix) && sender.length === 10) {
+      if (validPrefixes.includes(prefix) && sender.length === 8) {
         aProcess = true;
       }
     }
@@ -122,7 +135,7 @@ form.addEventListener("submit", (event) => {
       prefix = receiver.slice(0, 2);
       validPrefixes = ["05", "06", "07", "54", "55", "56", "57", "64", "65", "66", "77", "01", "02", "03", "51", "52", "53", "60", "61", "62", "63"];
 
-      if (validPrefixes.includes(prefix) && receiver.length === 10) {
+      if (validPrefixes.includes(prefix) && receiver.length === 8) {
         bProcess = true;
       }
     }
@@ -215,13 +228,39 @@ form.addEventListener("submit", (event) => {
       }
     }
 
+    function adjustDecimal2(number) {
+      if (number % 1 === 0) {
+        return number;
+      } else if (number % 1 <= 0.1) {
+        return Math.floor(number);
+      } else if (number % 1 > 0.1 && number % 1 <= 0.2) {
+        return Math.floor(number) + 0.1;
+      } else if (number % 1 > 0.2 && number % 1 <= 0.3) {
+        return Math.floor(number) + 0.2;
+      } else if (number % 1 > 0.3 && number % 1 <= 0.4) {
+        return Math.floor(number) + 0.3;
+      } else if (number % 1 > 0.4 && number % 1 <= 0.5) {
+        return Math.floor(number) + 0.4;
+      } else if (number % 1 > 0.5 && number % 1 <= 0.6) {
+        return Math.floor(number) + 0.5;
+      } else if (number % 1 > 0.6 && number % 1 <= 0.7) {
+        return Math.floor(number) + 0.6;
+      } else if (number % 1 > 0.7 && number % 1 <= 0.8) {
+        return Math.floor(number) + 0.7;
+      } else if (number % 1 > 0.8 && number % 1 <= 0.9) {
+        return Math.floor(number) + 0.8;
+      } else if (number % 1 > 0.9) {
+        return Math.floor(number) + 0.9;
+      }
+    }
+
     let transactionFee;
     let amountToSend;
 
     if (senderCountry === "GHANA" && receiverCountry !== "GHANA") {
       amountToSend = adjustDecimal((amountReceived / 1000) * ghXof);
     } else if (senderCountry !== "GHANA" && receiverCountry === "GHANA") {
-      amountToSend = Math.ceil(amountReceived / xofgh) * 1000;
+      amountToSend = Math.ceil((adjustDecimal2(amountReceived) / xofgh) * 1000);
     }
 
     if (senderCountry === "GHANA" && receiverCountry === "TOGO") {
@@ -337,24 +376,39 @@ form.addEventListener("submit", (event) => {
     }
 
     if (senderCountry === "TOGO") {
-      sender = "+228" + sender + " ";
+      sender = "+228" + sender;
     } else if (senderCountry === "BENIN") {
-      sender = "+229" + sender + " ";
+      sender = "+229" + sender;
     } else if (senderCountry === "IVORY COAST") {
-      sender = "+225" + sender + " ";
+      sender = "+225" + sender;
     } else if (senderCountry === "BURKINA FASO") {
-      sender = "+226" + sender + " ";
+      sender = "+226" + sender;
     } else if (senderCountry === "SENEGAL") {
       sender = "+221" + sender;
     } else if (senderCountry === "MALI") {
-      sender = "+223" + sender + " ";
+      sender = "+223" + sender;
     } else if (senderCountry === "GHANA") {
-      sender = sender + " ";
+      sender = sender;
     }
 
-    if (a) {
+    if (sd) {
+      sd = " " + sd;
+    }
+
+    if (rc) {
+      rc = " " + rc;
+    }
+
+    if (a && senderCountry === "GHANA") {
       sender = `RT01-ACCT: GHS ${(totalPaid + totalPaid / 100).toFixed(2)}`;
-      sd = "";
+    } else if (a && senderCountry === "TOGO") {
+      sender = "+228@ID: ";
+    } else if (a && senderCountry === "BENIN") {
+      sender = "+229@ID: ";
+    } else if (a && senderCountry === "IVORY COAST") {
+      sender = "+225@ID: ";
+    } else if (a && senderCountry === "BURKINA FASO") {
+      sender = "+226@ID: ";
     }
 
     const resp = document.getElementById("response");
@@ -362,13 +416,13 @@ form.addEventListener("submit", (event) => {
       resp.innerHTML = `Transaction successful via Retransfy.
 You've sent ${amountReceived.toLocaleString(
         "fr-FR"
-      )} FCFA to ${receiver} ${rc.toUpperCase()} at a rate of ${ghXof} | ${senderCountry} to ${receiverCountry};
+      )} FCFA to ${receiver}${rc.toUpperCase()} at a rate of ${ghXof} | ${senderCountry} to ${receiverCountry};
 ${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of GHS ${totalPaid.toFixed(
         2
       )}, including a transaction fee of GHS ${transactionFee.toFixed(2)} via ${sender}${sd.toUpperCase()}.`;
     } else if (senderCountry !== "GHANA" && receiverCountry === "GHANA") {
       resp.innerHTML = `Transaction successful via Retransfy.
-You've sent GHS ${amountReceived.toFixed(2)} to ${receiver} ${rc.toUpperCase()} at a rate of ${xofgh} | ${senderCountry} to ${receiverCountry};
+You've sent GHS ${amountReceived.toFixed(2)} to ${receiver}${rc.toUpperCase()} at a rate of ${xofgh} | ${senderCountry} to ${receiverCountry};
 ${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of ${totalPaid.toLocaleString(
         "fr-FR"
       )} FCFA, including a transaction fee of ${transactionFee.toLocaleString("fr-FR")} FCFA via ${sender}${sd.toUpperCase()}.`;
