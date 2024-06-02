@@ -24,7 +24,7 @@
           <li id="rateHref">Rate</li>
           <li id="netHref">Find Network</li>
           <li id="custHref">Search</li>
-          <li id="onTop">Change order</li>
+          <li id="onTop">Open by Default</li>
         </ul>
         <div class="burger" id="burger">
           <div class="line1"></div>
@@ -58,11 +58,11 @@
             </select>
           </div>
           <label for="amountReceived">Amount Received</label>
-          <input type="number" id="amountReceived" maxlength="10" />
+          <input type="number" id="amountReceived" step="any" />
           <label for="receiver">Receiver's Number</label>
-          <input type="number" id="receiver" maxlength="15" />
+          <input type="text" id="receiver" maxlength="15" />
           <label for="sender">Sender's Number</label>
-          <input type="number" id="sender" name="sender" maxlength="15" />
+          <input type="text" id="sender" name="sender" maxlength="15" />
           <label for="trx">TRX ID</label>
           <input type="text" id="trx" name="trx" maxlength="30" />
           <button type="submit" class="rct-submit">Continue</button>
