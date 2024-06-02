@@ -117,7 +117,7 @@ header {
 #onTop {
   background-color: #fff;
   color: #076c5e;
-  margin-top: 50px;
+  padding: 2px;
 }
 
 #onTop:hover {
