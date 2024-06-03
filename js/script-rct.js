@@ -97,7 +97,7 @@ form.addEventListener("submit", (event) => {
 
     if (validPrefixes.includes(prefix) && sender.length === 10) {
       aProcess = true;
-    } else if (senderCountry === "BURKINA FASO") {
+    }} else if (senderCountry === "BURKINA FASO") {
       prefix = sender.slice(0, 2);
       validPrefixes = ["05", "06", "07", "54", "55", "56", "57", "64", "65", "66", "77", "01", "02", "03", "51", "52", "53", "60", "61", "62", "63"];
 
@@ -105,7 +105,7 @@ form.addEventListener("submit", (event) => {
         aProcess = true;
       }
     }
-  }
+  
 
   if (receiverCountry === "GHANA") {
     prefix = receiver.slice(0, 3);
@@ -133,7 +133,7 @@ form.addEventListener("submit", (event) => {
 
     if (validPrefixes.includes(prefix) && receiver.length === 10) {
       bProcess = true;
-    } else if (receiverCountry === "BURKINA FASO") {
+    }} else if (receiverCountry === "BURKINA FASO") {
       prefix = receiver.slice(0, 2);
       validPrefixes = ["05", "06", "07", "54", "55", "56", "57", "64", "65", "66", "77", "01", "02", "03", "51", "52", "53", "60", "61", "62", "63"];
 
@@ -141,7 +141,7 @@ form.addEventListener("submit", (event) => {
         bProcess = true;
       }
     }
-  }
+  
 
   if (!time || !receiver || !sender || !trx || !amountReceived) {
     errorM.style.display = "block";
