@@ -1,5 +1,5 @@
 const rateD = document.getElementById("rate-d");
-const a = 25.5;
+const a = 25;
 const b = a - 1;
 
 const currentDate = new Date();
