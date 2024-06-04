@@ -1,4 +1,4 @@
-const ghsToXof = 25.5;
+const ghsToXof = 25;
 const xofToGhs = ghsToXof - 1;
 const preview = document.getElementById("preview");
 const showFee = document.getElementById("showFee");
