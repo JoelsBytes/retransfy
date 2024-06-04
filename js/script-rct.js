@@ -25,7 +25,7 @@ form.addEventListener("submit", (event) => {
   const year = currentDate.getFullYear();
   const formattedDate = `${day}/${month}/${year}`;
 
-  const ghXof = 25.5;
+  const ghXof = 25;
   const xofgh = ghXof - 1;
 
   const errorM = document.getElementById("error");
