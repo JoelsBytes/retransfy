@@ -16,12 +16,13 @@ body {
 }
 
 .root {
- height: 100%;
+  height: 83vh;
 }
 
 header {
   background: #076c5e;
   color: #fff;
+  height: 7vh;
 }
 
 .navbar {
@@ -135,6 +136,7 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  height: 10vh;
 }
 
 .country_flags {
