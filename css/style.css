@@ -17,13 +17,11 @@ body {
 
 .root {
   flex: 1;
-  overflow: hidden;
 }
 
 header {
   background: #076c5e;
   color: #fff;
-  height: 7vh;
 }
 
 .navbar {
@@ -83,9 +81,9 @@ header {
     flex-direction: column;
     position: absolute;
     right: 0;
-    top: 7vh;
+    top: 9%;
     width: 200px;
-    height: 93vh;
+    height: 89vh;
     background-color: #076c5e;
     transition: transform 0.3s ease-in-out;
     transform: translateX(100%);
@@ -114,15 +112,6 @@ header {
   .nav-bar-logo {
     width: 100px;
   }
-
-  .footer {
-    height: 10vh;
-  }
-
-  .root {
-    flex: 1;
-    overflow: hidden;
-  }
 }
 
 #onTop {
@@ -141,11 +130,11 @@ header {
   padding: 5px 0;
   text-align: center;
   margin: 0;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  height: 10vh;
 }
 
 .country_flags {
