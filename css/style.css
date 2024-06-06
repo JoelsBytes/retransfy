@@ -127,10 +127,10 @@ header {
 
 .root {
   margin-top: 65px;
-  margin-bottom: 95px;
+/*   margin-bottom: 95px; */
   flex: 1;
   overflow: auto;
-  overflow-x: hidden;
+padding-bottom: 95px;
 }
 
 /* 
