@@ -22,12 +22,10 @@ body {
  */
 
 header {
-  /* position: fixed; */
   width: 100vw;
   height: 60px;
   background: #076c5e;
   color: #fff;
-/*   top: 0; */
 }
 
 .navbar {
@@ -137,13 +135,11 @@ header {
  */
 
 .footer {
-  /* position: fixed; */
   background: #ffd666;
   color: #076c5e;
   padding: 5px 0;
   text-align: center;
   margin: 0;
-/*   bottom: 0; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
