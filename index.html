@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retransfy</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <link rel="shortcut icon" href="rt/fav.png" type="image/x-icon" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="index.html"><img src="rt/Logo.png" alt="Logo" class="nav-bar-logo" /></a>
+        </div>
+        <ul class="nav-links" id="nav-links">
+          <li id="cvx-link">Convert</li>
+          <li id="rct-link">Receipt</li>
+          <li id="ar-link">A-R</li>
+          <li id="rate-link">Rate</li>
+          <li id="nw-link">Find Network</li>
+          <li id="cust-link">Name Search</li>
+          <li id="default-link">Set Default</li>
+        </ul>
+        <div class="burger" id="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="root">
+      <div class="main_cvx" id="main_cvx">
+        <form id="cvx-form">
+          <label for="sd-ctry">Sender's country</label>
+          <select id="sd-ctry">
+            <option value="GHANA">Ghana</option>
+            <option value="TOGO">Togo</option>
+            <option value="BENIN">Benin</option>
+            <option value="IVORY COAST">Ivory Coast</option>
+            <option value="BURKINA FASO">Burkina Faso</option>
+            <option value="SENEGAL">Senegal</option>
+            <option value="MALI">Mali</option>
+          </select>
+
+          <label for="rv-ctry">Receiver's country</label>
+          <select id="rv-ctry">
+            <option value="TOGO">Togo</option>
+            <option value="BENIN">Benin</option>
+            <option value="IVORY COAST">Ivory Coast</option>
+            <option value="BURKINA FASO">Burkina Faso</option>
+            <option value="SENEGAL">Senegal</option>
+            <option value="MALI">Mali</option>
+            <option value="GHANA">Ghana</option>
+          </select>
+
+          <label for="sd-am">Amount to send</label>
+          <div class="evlt-bx">
+            <div class="sd-bx sd-rv-bx">
+              <input id="sd-am" class="sd-am" />
+              <span id="sd-crxy" class="crxy"></span>
+            </div>
+            <button id="evlt">C</button>
+          </div>
+
+          <span class="dsplF" id="dsplF"></span>
+          <label for="rv-am">Amount to receive</label>
+          <div class="rv-bx sd-rv-bx">
+            <input type="number" id="rv-am" class="rv-am" />
+            <span id="rv-crxy" class="crxy"></span>
+          </div>
+
+          <div class="wdf-bx" id="wdf-bx">
+            <input type="checkbox" id="wdF" class="wdF" />
+            <p class="wdf-txt" id="wdf-txt">Add withdrawal fee</p>
+          </div>
+
+          <p id="error-cvx" class="error-cvx"></p>
+
+          <div class="cvx" id="cvx">
+            <p>Amount to receive: <span id="rslt1"></span></p>
+            <p>Amount to send: <span id="rslt2"></span></p>
+            <p>Retransfy fee: <span id="rslt3"></span></p>
+            <p>Total to pay: <span id="rslt4"></span></p>
+          </div>
+
+          <div class="copy_s" id="copy_s" style="display: none">
+            <p>Copy</p>
+            <button type="button" id="copy-en">EN</button>
+            <button type="button" id="copy-fr">FR</button>
+          </div>
+
+          <button type="submit" class="gnRslt" id="gnRslt">Continue</button>
+        </form>
+      </div>
+
+      <div id="rct-bx" class="rct-bx">
+        <form action="" id="form-rct" class="form-rct">
+          <div class="rct-top">
+            <input type="time" id="time" class="time" placeholder="Time" />
+            <select id="s-ctry">
+              <option value="GHANA">Ghana</option>
+              <option value="TOGO">Togo</option>
+              <option value="BENIN">Benin</option>
+              <option value="IVORY COAST">Ivory Coast</option>
+              <option value="BURKINA FASO">Burkina Faso</option>
+              <option value="SENEGAL">Senegal</option>
+              <option value="MALI">Mali</option>
+            </select>
+            <select id="r-ctry">
+              <option value="TOGO">Togo</option>
+              <option value="BENIN">Benin</option>
+              <option value="IVORY COAST">Ivory Coast</option>
+              <option value="BURKINA FASO">Burkina Faso</option>
+              <option value="SENEGAL">Senegal</option>
+              <option value="MALI">Mali</option>
+              <option value="GHANA">Ghana</option>
+            </select>
+          </div>
+
+          <label for="rc-num">Receiver</label>
+          <input type="text" id="rc-num" maxlength="15" />
+          <label for="am-rcv">Amount</label>
+          <input type="number" id="am-rcv" step="any" />
+
+          <label for="sd-num">Sender</label>
+          <input type="text" id="sd-num" maxlength="15" />
+          <label for="trx">Trx ID</label>
+          <input type="text" id="trx" maxlength="30" />
+          <button type="submit" class="rct-submit">Continue</button>
+        </form>
+        <p class="error" id="error"></p>
+        <div id="rct-resp" class="rct-resp" style="display: none">
+          <p id="resp"></p>
+          <div class="copy-icon" id="copy">
+            <div class="up-box-copy"></div>
+            <div class="bottom-box-copy"></div>
+          </div>
+          <p class="all-trx">View all transactions</p>
+          <p class="report">Any issues? Report</p>
+          <p id="goHome">Go to Home</p>
+          <button type="button" id="new-trx">Initiate a new transaction</button>
+        </div>
+      </div>
+
+      <div class="a-r-t-bx" id="a-r-t-bx">
+        <form id="a-r-t">
+          <select id="cur-cy">
+            <option value="FCFA">TO FCFA</option>
+            <option value="GHS">TO GHS</option>
+          </select>
+          <input type="number" id="b-dl" step="any" required />
+          <input type="number" id="s-dl" step="any" required />
+          <input type="number" id="am-nt" step="any" value="1" />
+          <input type="number" id="p-ying" step="any" value="1" />
+          <p id="dsplRT" style="display: none"></p>
+          <p id="pnl" style="display: none"></p>
+          <button type="submit" class="a-r-t-submit">Get</button>
+        </form>
+      </div>
+
+      <div class="rate-bx" id="rate-bx">
+        <h2>Today's Rate</h2>
+        <h3 id="rateDate"></h3>
+        <p id="rate-d" class="rate-d"></p>
+        <div class="wrapcopy">
+          <span id="copyEn">EN</span>
+          <span id="copyFr">FR</span>
+        </div>
+      </div>
+
+      <div class="net-bx" id="net-bx">
+        <form id="network">
+          <select id="net-ctry">
+            <option value="">Select a country</option>
+            <option value="GHANA">Ghana</option>
+            <option value="TOGO">Togo</option>
+            <option value="BENIN">Benin</option>
+            <option value="IVORY COAST">Ivory Coast</option>
+            <option value="BURKINA FASO">Burkina Faso</option>
+          </select>
+
+          <input type="text" id="net-fn" placeholder="Enter Phone Number" maxlength="15" />
+          <button type="submit" class="net-btn">Find Network</button>
+        </form>
+        <p id="error-net" style="display: none"></p>
+        <p id="net-display" style="display: none"></p>
+      </div>
+
+      <div class="cust-bx" id="cust-bx">
+        <form id="cust-form">
+          <input type="text" id="cust-num" placeholder="Enter Phone number" maxlength="15" />
+          <button type="submit" class="cust-btn">Search</button>
+        </form>
+        <p id="cust-error" style="display: none"></p>
+        <p id="cust-display" style="display: none"></p>
+      </div>
+
+      <div id="default-bx">
+        <form id="open-default">
+          <select id="default-menu-item">
+            <option value="">Select a menu item</option>
+            <option value="CVX">Converter</option>
+            <option value="RCPT">Receipt</option>
+            <option value="A-R">A-R</option>
+            <option value="NW">Find Network</option>
+            <option value="NS">Name Search</option>
+            <option value="R">Reset</option>
+          </select>
+          <button type="submit" class="set-default">Set as default</button>
+        </form>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="country_flags">
+        <img src="flags/1200px-Flag_of_Ghana.svg.png" alt="Ghana Flag" />
+        <img src="flags/flag-800.png" alt="Togo Flag" />
+        <img src="flags/Flag-of-Benin.jpg" alt="Benin Flag" />
+        <img src="flags/Flag_of_Côte_d'Ivoire.svg.png" alt="Ivory Coast Flag" />
+        <img src="flags/flag-of-burkina-faso.jpg" alt="Burkina Faso Flag" />
+        <img src="flags/download.png" alt="Senegal Flag" />
+        <img src="flags/Flag_of_Mali.svg.png" alt="Mali Flag" />
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Retransfy. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+    <script type="module" src="js/script-cvx.js"></script>
+    <script type="module" src="js/script-rct.js"></script>
+    <script src="js/script-a-r-t.js"></script>
+    <script type="module" src="js/script-rt.js"></script>
+    <script type="module" src="js/script-nw.js"></script>
+    <script type="module" src="js/script-nm.js"></script>
+  </body>
+</html>
