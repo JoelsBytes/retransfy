@@ -5,6 +5,11 @@ burger.addEventListener("click", () => {
   navLinks.classList.toggle("active");
 });
 
+const root = document.querySelector(".root");
+root.addEventListener("click", () => {
+  navLinks.classList.remove("active");
+});
+
 const defaultLink = document.getElementById("default-link");
 const defaultBx = document.getElementById("default-bx");
 const defaultForm = document.getElementById("open-default");
