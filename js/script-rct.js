@@ -184,7 +184,7 @@ form.addEventListener("submit", (event) => {
     }
 
     if (a && sdRctry === "GHANA") {
-      sdR = `DIRECT-PAY-RT01-ACCT: GHS${tlPaid.toFixed(2)} + Cash-out Fee.`;
+      sdR = `DIRECT-PAY-RT01-ACCT: GHS${tlPaid.toFixed(2)} + Cash-out Fee`;
     } else if (a && sdRctry === "TOGO") {
       sdR = `+228@:${day}${month}${year}${time.replace(":", "")}`;
     } else if (a && sdRctry === "BENIN") {
