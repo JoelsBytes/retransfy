@@ -249,7 +249,7 @@ export function sntzNum(fn) {
 export function vldtNum(ctr, sr, ap, pr, vp) {
   if (ctr === "GHANA") {
     pr = sr.slice(0, 3);
-    vp = ["054", "024", "059", "053", "055", "057", "027", "026", "056", "050", "020"];
+    vp = ["024", "025", "053", "054", "055", "059", "027", "057", "026", "056", "020", "050"];
     if (vp.includes(pr) && sr.length === 10) {
       return (ap = true);
     }
