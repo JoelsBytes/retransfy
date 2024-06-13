@@ -300,8 +300,8 @@ function applyCvx() {
 ${formattedDate} || Rate: ${sdc === "GHANA" ? ghsToXof : xofToGhs}
 
 Amount to receive: ${sdc === "GHANA" ? amTR.toLocaleString("fr-FR") + " FCFA" : "GHS " + amTR.toFixed(2)}
-Amount to send: ${sdc === "GHANA" ? "GHS " + amTS.toFixed(2) : amTS.toLocaleString("fr-FR") + " FCFA"}
-Retransfy fee: ${sdc === "GHANA" ? "GHS " + trF.toFixed(2) : trF.toLocaleString("fr-FR") + " FCFA"}
+Equivalence: ${sdc === "GHANA" ? "GHS " + amTS.toFixed(2) : amTS.toLocaleString("fr-FR") + " FCFA"}
+Transaction fee: ${sdc === "GHANA" ? "GHS " + trF.toFixed(2) : trF.toLocaleString("fr-FR") + " FCFA"}
 Total to Pay: ${sdc === "GHANA" ? "GHS " + totalToPay.toFixed(2) : totalToPay.toLocaleString("fr-FR") + " FCFA"}`);
 }
 
@@ -346,8 +346,8 @@ copier.addEventListener("click", async function () {
       default:
         line = line
           .replace(/Amount to receive/g, "Montant à recevoir")
-          .replace(/Amount to send/g, "Montant à envoyer")
-          .replace(/Retransfy fee/g, "Frais de Retransfy")
+          .replace(/Equivalence/g, "Équivalence")
+          .replace(/Transaction fee/g, "Frais de transaction")
           .replace(/Total to Pay/g, "Total à payer");
         break;
     }
