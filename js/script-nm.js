@@ -31,7 +31,7 @@ custForm.addEventListener("submit", (event) => {
     custErr.innerHTML = "Enter a number.";
     custDisplay.style.display = "none";
     return;
-  } else if (custNm.length < 8 || custNm.length > 10 || custNm.length === 9) {
+  } else if (custNm.length < 8 || custNm.length > 10) {
     custErr.style.display = "block";
     custErr.innerHTML = "Invalid number.";
     custDisplay.style.display = "none";
