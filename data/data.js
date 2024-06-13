@@ -242,7 +242,23 @@ export function sntzNum(fn) {
   fn = fn.replace(/\s/g, "");
   fn = fn.replace(/\+228|\+229|\+225|\+226|\+221|\+223|00228|00229|00225|00226|00221|00223/g, "");
   fn = fn.replace(/\+233|00233/g, "0");
-  fn = fn.replace(/[-_=/.:;'"]/g, "");
+  fn = fn.replace(/[-_=/.:;'")(+*~,|]/g, "");
+
+  const invalidPrefixes = ["228", "229", "225", "226", "221", "223"];
+
+  if (fn.length > 10) {
+    for (let prefix of invalidPrefixes) {
+      if (fn.startsWith(prefix)) {
+        fn = fn.replace(prefix, "");
+        break;
+      }
+    }
+
+    if (fn.startsWith("233")) {
+      fn = fn.replace("233", "0");
+    }
+  }
+
   return fn;
 }
 
@@ -262,7 +278,7 @@ export function vldtNum(ctr, sr, ap, pr, vp) {
     }
   } else if (ctr === "BENIN") {
     pr = sr.slice(0, 2);
-    vp = ["95", "94", "98", "99", "90", "60", "64", "68", "65", "96", "97", "91", "61", "62", "66", "67", "69", "52", "54", "55"];
+    vp = ["52", "54", "55", "60", "61", "62", "64", "65", "66", "67", "68", "69", "90", "91", "94", "95", "96", "97", "98", "99"];
 
     if (vp.includes(pr) && sr.length === 8) {
       return (ap = true);
@@ -281,5 +297,19 @@ export function vldtNum(ctr, sr, ap, pr, vp) {
     if (vp.includes(pr) && sr.length === 8) {
       return (ap = true);
     }
+  } else if (ctr === "SENEGAL") {
+    // pr = sr.slice(0, 2);
+    // vp = ["05", "06", "07", "54", "55", "56", "57", "64", "65", "66", "77", "01", "02", "03", "51", "52", "53", "60", "61", "62", "63"];
+
+    // if (vp.includes(pr) && sr.length === 8) {
+    return (ap = true);
+    // }
+  } else if (ctr === "MALI") {
+    // pr = sr.slice(0, 2);
+    // vp = ["05", "06", "07", "54", "55", "56", "57", "64", "65", "66", "77", "01", "02", "03", "51", "52", "53", "60", "61", "62", "63"];
+
+    // if (vp.includes(pr) && sr.length === 8) {
+    return (ap = true);
+    // }
   }
 }
