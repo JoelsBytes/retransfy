@@ -36,6 +36,7 @@ form.addEventListener("submit", (event) => {
   let a = false;
 
   let trx = document.getElementById("trx").value.trim();
+
   if (trx === "1") {
     trx = `${day}${month}${year}${time.replace(":", "")}`;
   }
@@ -60,6 +61,15 @@ form.addEventListener("submit", (event) => {
     a = true;
   }
 
+  let acct = Number(document.getElementById("acct").value);
+  if (acct && sdRctry === "GHANA" && rvRctry === "TOGO") {
+    acct = ` | 00${acct}-ACCT-RT`;
+  } else if (!acct && sdRctry === "GHANA" && rvRctry === "TOGO") {
+    acct = 0;
+  } else {
+    acct = 10;
+  }
+
   sdR = sntzNum(sdR);
 
   let aProcess = false;
@@ -67,7 +77,7 @@ form.addEventListener("submit", (event) => {
   aProcess = vldtNum(sdRctry, sdR, aProcess);
   bProcess = vldtNum(rvRctry, rvR, bProcess);
 
-  if (!time || !rvR || !sdR || !trx || !amRcv) {
+  if (!time || !rvR || !sdR || !trx || !amRcv || !acct) {
     errorM.style.display = "block";
     errorM.innerHTML = "Please fill in all fields!";
     form.style.display = "flex";
@@ -183,6 +193,10 @@ form.addEventListener("submit", (event) => {
       rc = " " + rc;
     }
 
+    if (acct === 10) {
+      acct = "";
+    }
+
     if (a && sdRctry === "GHANA") {
       sdR = `DIRECT-PAY-RT01-ACCT: GHS${tlPaid.toFixed(2)} + Cash-out Fee`;
     } else if (a && sdRctry === "TOGO") {
@@ -202,12 +216,17 @@ form.addEventListener("submit", (event) => {
     const resp = document.getElementById("resp");
     if (sdRctry === "GHANA" && rvRctry !== "GHANA") {
       resp.innerHTML = `Transaction successful via Retransfy.
-You've sent ${amRcv.toLocaleString("fr-FR")} FCFA to ${rvR}${rc.toUpperCase()} at a rate of ${ghXof} | ${sdRctry} to ${rvRctry};
-${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of GHS ${tlPaid.toFixed(2)}, including a transaction fee of GHS ${trxFee.toFixed(2)} via ${sdR}${sd.toUpperCase()}.`;
+You've sent ${amRcv.toLocaleString("fr-FR")} FCFA to ${rvR}${rc.toUpperCase()} at a rate of ${ghXof} | ${sdRctry} to ${rvRctry}${acct};
+${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of GHS ${tlPaid.toFixed(
+        2
+      )}, including a transaction fee of GHS ${trxFee.toFixed(2)} via ${sdR}${sd.toUpperCase()}.`;
     } else if (sdRctry !== "GHANA" && rvRctry === "GHANA") {
       resp.innerHTML = `Transaction successful via Retransfy.
-You've sent GHS ${amRcv.toFixed(2)} to ${rvR}${rc.toUpperCase()} at a rate of ${xofgh} | ${sdRctry} to ${rvRctry};
-${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of ${tlPaid.toLocaleString("fr-FR")} FCFA, including a transaction fee of ${trxFee.toLocaleString("fr-FR")} FCFA via ${sdR}${sd.toUpperCase()}.`;}
+You've sent GHS ${amRcv.toFixed(2)} to ${rvR}${rc.toUpperCase()} at a rate of ${xofgh} | ${sdRctry} to ${rvRctry}${acct};
+${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of ${tlPaid.toLocaleString(
+        "fr-FR"
+      )} FCFA, including a transaction fee of ${trxFee.toLocaleString("fr-FR")} FCFA via ${sdR}${sd.toUpperCase()}.`;
+    }
 
     copyButton.classList.remove("copyChange");
     errorM.style.display = "none";
