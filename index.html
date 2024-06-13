@@ -83,8 +83,8 @@
 
           <div class="cvx" id="cvx">
             <p>Amount to receive: <span id="rslt1"></span></p>
-            <p>Amount to send: <span id="rslt2"></span></p>
-            <p>Retransfy fee: <span id="rslt3"></span></p>
+            <p>Equivalence: <span id="rslt2"></span></p>
+            <p>Transaction fee: <span id="rslt3"></span></p>
             <p>Total to pay: <span id="rslt4"></span></p>
           </div>
 
@@ -123,14 +123,17 @@
           </div>
 
           <label for="rc-num">Receiver</label>
-          <input type="text" id="rc-num" maxlength="15" />
+          <input type="text" id="rc-num" maxlength="35" />
           <label for="am-rcv">Amount</label>
           <input type="number" id="am-rcv" step="any" />
 
           <label for="sd-num">Sender</label>
-          <input type="text" id="sd-num" maxlength="15" />
+          <input type="text" id="sd-num" maxlength="50" />
           <label for="trx">Trx ID</label>
-          <input type="text" id="trx" maxlength="30" />
+          <div class="trx-acct">
+            <input type="text" id="trx" maxlength="50" />
+            <input type="number" id="acct" min="1" max="7" />
+          </div>
           <button type="submit" class="rct-submit">Continue</button>
         </form>
         <p class="error" id="error"></p>
@@ -184,7 +187,7 @@
             <option value="BURKINA FASO">Burkina Faso</option>
           </select>
 
-          <input type="text" id="net-fn" placeholder="Enter Phone Number" maxlength="15" />
+          <input type="text" id="net-fn" placeholder="Enter Phone Number" maxlength="50" />
           <button type="submit" class="net-btn">Find Network</button>
         </form>
         <p id="error-net" style="display: none"></p>
@@ -193,7 +196,7 @@
 
       <div class="cust-bx" id="cust-bx">
         <form id="cust-form">
-          <input type="text" id="cust-num" placeholder="Enter Phone number" maxlength="15" />
+          <input type="text" id="cust-num" placeholder="Enter Phone number" maxlength="50" />
           <button type="submit" class="cust-btn">Search</button>
         </form>
         <p id="cust-error" style="display: none"></p>
@@ -203,7 +206,7 @@
       <div id="default-bx">
         <form id="open-default">
           <select id="default-menu-item">
-            <option value="">Select a menu item</option>
+            <option value="">Select a Menu item</option>
             <option value="CVX">Converter</option>
             <option value="RCPT">Receipt</option>
             <option value="A-R">A-R</option>
