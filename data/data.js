@@ -1,4 +1,4 @@
-export const ax = 25;
+export const ax = 25.5;
 export const bx = ax - 1;
 
 export function calcF(amt, cfs, cfr) {
