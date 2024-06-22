@@ -311,7 +311,9 @@ label {
 
 #am-rcv,
 #sd-num,
-#rc-num {
+#rc-num,
+#rcv-name,
+#sdr-name {
   display: block;
   border: solid 1px #076c5e;
   width: 300px;
@@ -366,6 +368,25 @@ input:focus {
   font-size: 14px;
 }
 
+#add-cust {
+  margin-top: 15px;
+  width: 300px;
+  border: solid 1px #076c5e;
+  border-radius: 20px;
+  padding: 4px 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.other-fields {
+  display: none;
+  transition: ease-in;
+}
+
+.reveal {
+  display: block;
+}
+
 #s-ctry,
 #r-ctry {
   -webkit-appearance: none;
@@ -389,7 +410,8 @@ select:focus {
   margin-bottom: 5px;
 }
 
-.rct-submit {
+.rct-submit,
+#confirm-cust {
   width: 300px;
   background-color: #076c5e;
   color: white;
