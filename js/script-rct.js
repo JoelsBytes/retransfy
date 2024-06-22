@@ -19,8 +19,7 @@ const form = document.getElementById("form-rct");
 const rctResp = document.getElementById("rct-resp");
 const copyButton = document.getElementById("copy");
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+function runRCT(se, re) {
   const currentDate = new Date();
   const day = String(currentDate.getDate()).padStart(2, "0");
   const month = String(currentDate.getMonth() + 1).padStart(2, "0");
@@ -142,6 +141,14 @@ form.addEventListener("submit", (event) => {
       rc = rc.replace(ending, "");
     });
 
+    if (sd === "" && se) {
+      sd = se;
+    }
+
+    if (rc === "" && re) {
+      rc = re;
+    }
+
     let amTsd;
 
     if (sdRctry === "GHANA" && rvRctry !== "GHANA") {
@@ -233,6 +240,26 @@ ${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of ${tlPai
     form.style.display = "none";
     rctResp.style.display = "flex";
   }
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  runRCT();
+});
+
+const addCust = document.getElementById("add-cust");
+const confirmCust = document.getElementById("confirm-cust");
+const otherFields = document.getElementById("other-fields");
+addCust.addEventListener("click", () => {
+  otherFields.classList.toggle("reveal");
+});
+
+confirmCust.addEventListener("click", (event) => {
+  event.preventDefault();
+  const sdrName = document.getElementById("sdr-name").value.trim();
+  const rcvName = document.getElementById("rcv-name").value.trim();
+  runRCT(sdrName, rcvName);
+  otherFields.classList.remove("reveal");
 });
 
 copyButton.addEventListener("click", () => {
