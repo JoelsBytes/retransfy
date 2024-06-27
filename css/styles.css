@@ -379,12 +379,19 @@ input:focus {
 }
 
 .other-fields {
-  display: none;
-  transition: ease-in;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
 }
 
 .reveal {
-  display: block;
+  max-height: 150px;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.reveal2 {
+  max-height: 150px;
+  transition: max-height 0.3s ease-in-out;
 }
 
 #s-ctry,
@@ -446,55 +453,42 @@ select:focus {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin-top: 20px;
   color: #076c5e;
-  border: 1px solid gray;
   padding: 5px;
+  font-size: 15px;
   cursor: pointer;
 }
 
 .all-trx:hover {
-  background-color: #ffe8a8;
-}
-
-.report {
-  cursor: pointer;
-  margin-top: 10px;
-  font-family: Helvetica, sans-serif;
-  color: #b80404;
-}
-
-.report:hover {
-  color: #ff3636;
+  color: #00b199;
 }
 
 #goHome {
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 15px;
   font-weight: bold;
   font-family: Helvetica, sans-serif;
+  background-color: #ffd666;
+  padding: 5px 10px;
   color: #076c5e;
 }
 
 #goHome:hover {
-  color: #02ad97;
+  background-color: #fde296;
 }
 
-#new-trx {
-  width: 220px;
-  background-color: #ffd666;
-  color: #076c5e;
-  padding: 5px;
+#report {
+  background-color: rgb(194, 0, 0);
+  color: white;
+  padding: 5px 10px;
   font-size: 16px;
-  font-weight: bold;
   border-style: none;
-  box-shadow: 1px 1px 2px rgb(73, 73, 73, 0.3);
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 15px;
   border: 1px solid #ffffff;
 }
 
-#new-trx:hover {
-  border: 1px solid #076c5e;
-  background-color: #ffffff;
+#report:hover {
+  background-color: red;
 }
 
 .error {

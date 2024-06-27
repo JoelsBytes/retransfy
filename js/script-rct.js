@@ -43,30 +43,43 @@ function runRCT(se, re) {
   rvR = sntzNum(rvR);
 
   let sdR = document.getElementById("sd-num").value.trim();
-  if (sdRctry === "GHANA" && sdR === "1") {
-    sdR = "0200000000";
-    a = true;
-  } else if (sdRctry === "TOGO" && sdR === "1") {
-    sdR = "90000000";
-    a = true;
-  } else if (sdRctry === "BENIN" && sdR === "1") {
-    sdR = "60000000";
-    a = true;
-  } else if (sdRctry === "IVORY COAST" && sdR === "1") {
-    sdR = "0100000000";
-    a = true;
-  } else if (sdRctry === "BURKINA FASO" && sdR === "1") {
-    sdR = "55000000";
-    a = true;
+
+  let pm = "CASH-OUT";
+  let pn = "";
+
+  if (sdRctry === "GHANA" && sdR.startsWith("@")) {
+    sdR = sdR.replace("@", "");
+    pm = `DIRECT TRANSFER + CASH-OUT FEE`;
+  } else if (sdRctry !== "GHANA" && sdR.startsWith("@")) {
+    pn = "TRX ID:" + sdR.replace("@", "");
+    if (sdRctry === "TOGO") {
+      sdR = "90000000";
+      a = true;
+    } else if (sdRctry === "BENIN") {
+      sdR = "60000000";
+      a = true;
+    } else if (sdRctry === "IVORY COAST") {
+      sdR = "0100000000";
+      a = true;
+    } else if (sdRctry === "BURKINA FASO") {
+      sdR = "55000000";
+      a = true;
+    } else if (sdRctry === "SENEGAL") {
+      sdR = "77000000";
+      a = true;
+    } else if (sdRctry === "MALI") {
+      sdR = "76000000";
+      a = true;
+    }
+
+    pm = "";
   }
 
-  let acct = Number(document.getElementById("acct").value);
-  if (acct && sdRctry === "GHANA" && rvRctry === "TOGO") {
+  let acct = String(document.getElementById("acct").value);
+  if (acct && acct !== "0") {
     acct = ` | 00${acct}-ACCT-RT`;
-  } else if (!acct && sdRctry === "GHANA" && rvRctry === "TOGO") {
-    acct = 0;
-  } else {
-    acct = 10;
+  } else if (rvRctry !== "TOGO" && acct === "0") {
+    acct = "none";
   }
 
   sdR = sntzNum(sdR);
@@ -79,6 +92,12 @@ function runRCT(se, re) {
   if (!time || !rvR || !sdR || !trx || !amRcv || !acct) {
     errorM.style.display = "block";
     errorM.innerHTML = "Please fill in all fields!";
+    form.style.display = "flex";
+    rctResp.style.display = "none";
+    return;
+  } else if (rvRctry === "TOGO" && acct === "0") {
+    errorM.style.display = "block";
+    errorM.innerHTML = "Something went wrong! Try again.";
     form.style.display = "flex";
     rctResp.style.display = "none";
     return;
@@ -200,24 +219,12 @@ function runRCT(se, re) {
       rc = " " + rc;
     }
 
-    if (acct === 10) {
+    if (acct === "none") {
       acct = "";
     }
 
-    if (a && sdRctry === "GHANA") {
-      sdR = `DIRECT-PAY-RT01-ACCT: GHS${tlPaid.toFixed(2)} + Cash-out Fee`;
-    } else if (a && sdRctry === "TOGO") {
-      sdR = `+228@:${day}${month}${year}${time.replace(":", "")}`;
-    } else if (a && sdRctry === "BENIN") {
-      sdR = `+229@:${day}${month}${year}${time.replace(":", "")}`;
-    } else if (a && sdRctry === "IVORY COAST") {
-      sdR = `+225@:${day}${month}${year}${time.replace(":", "")}`;
-    } else if (a && sdRctry === "BURKINA FASO") {
-      sdR = `+226@:${day}${month}${year}${time.replace(":", "")}`;
-    } else if (a && sdRctry === "SENEGAL") {
-      sdR = `+221@:${day}${month}${year}${time.replace(":", "")}`;
-    } else if (a && sdRctry === "MALI") {
-      sdR = `+223@:${day}${month}${year}${time.replace(":", "")}`;
+    if (a && sdRctry !== "GHANA") {
+      sdR = pn;
     }
 
     const resp = document.getElementById("resp");
@@ -226,7 +233,7 @@ function runRCT(se, re) {
 You've sent ${amRcv.toLocaleString("fr-FR")} FCFA to ${rvR}${rc.toUpperCase()} at a rate of ${ghXof} | ${sdRctry} to ${rvRctry}${acct};
 ${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of GHS ${tlPaid.toFixed(
         2
-      )}, including a transaction fee of GHS ${trxFee.toFixed(2)} via ${sdR}${sd.toUpperCase()}.`;
+      )}, including a transaction fee of GHS ${trxFee.toFixed(2)} via ${pm} - ${sdR}${sd.toUpperCase()}.`;
     } else if (sdRctry !== "GHANA" && rvRctry === "GHANA") {
       resp.innerHTML = `Transaction successful via Retransfy.
 You've sent GHS ${amRcv.toFixed(2)} to ${rvR}${rc.toUpperCase()} at a rate of ${xofgh} | ${sdRctry} to ${rvRctry}${acct};
@@ -260,6 +267,8 @@ confirmCust.addEventListener("click", (event) => {
   const rcvName = document.getElementById("rcv-name").value.trim();
   runRCT(sdrName, rcvName);
   otherFields.classList.remove("reveal");
+  document.getElementById("sdr-name").value = "";
+  document.getElementById("rcv-name").value = "";
 });
 
 copyButton.addEventListener("click", () => {
