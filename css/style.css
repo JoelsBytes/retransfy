@@ -15,6 +15,48 @@ body {
   font-family: Helvetica, sans-serif, Arial;
 }
 
+.set-for-mng {
+  position: fixed;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#setAdmin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.set-for-mng input {
+  display: block;
+  border: solid 1px #076c5e;
+  text-align: center;
+  width: 300px;
+  margin-top: 2px;
+  padding: 12px;
+  font-size: 16px;
+  box-shadow: 2px 2px 4px rgb(73, 73, 73, 0.3);
+  background-color: transparent;
+}
+
+.set-for-mng button {
+  width: 300px;
+  background-color: #076c5e;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  border-style: none;
+  box-shadow: 2px 2px 4px rgb(73, 73, 73, 0.3);
+  cursor: pointer;
+  margin-top: 10px;
+}
+
 /* 
 
 
@@ -87,7 +129,7 @@ header {
     right: 0;
     top: 61px;
     width: 200px;
-    height: 85vh;
+    height: 83vh;
     background-color: #076c5e;
     transition: transform 0.3s ease-in-out;
     transform: translateX(100%);
@@ -248,10 +290,12 @@ header {
   color: #076c5e;
   padding: 2px;
   text-align: center;
+  margin-top: 300px;
 }
 
 #default-link:hover {
-  background: #ffecb7;
+  background: transparent;
+  color: #fff;
 }
 
 #default-bx {
@@ -289,19 +333,17 @@ header {
 }
 
 #default-menu-item option {
-  color: #076c5e;
-  font-weight: bolder;
-}
-
-#default-menu-item option:first-child {
-  background-color: #ffffff;
-  color: gray;
-  font-weight: lighter;
+  font-family: monospace;
 }
 
 #default-menu-item option:last-child {
   text-align: center;
   background-color: red;
   color: white;
-  font-weight: bolder;
+}
+
+@media (min-width: 768px) {
+  #default-link {
+    display: none;
+  }
 }

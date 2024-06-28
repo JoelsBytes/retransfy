@@ -1,4 +1,4 @@
-import { ax as ghXof, bx as xofgh, calcF, decP, decD, sntzNum, vldtNum } from "../data/data.js";
+import { ax as ghXof, bx as xofgh, calcF, decP, sntzNum, vldtNum } from "../data/data.js";
 
 let usn = {};
 
@@ -173,7 +173,7 @@ function runRCT(se, re) {
     if (sdRctry === "GHANA" && rvRctry !== "GHANA") {
       amTsd = decP((amRcv / 1000) * ghXof);
     } else if (sdRctry !== "GHANA" && rvRctry === "GHANA") {
-      amTsd = Math.ceil((decD(amRcv) / xofgh) * 1000);
+      amTsd = Math.ceil((decP(amRcv) / xofgh) * 1000);
     }
 
     let trxFee = calcF(amTsd, sdRctry, rvRctry);

@@ -1,3 +1,5 @@
+import { escond, cache, mostrar, rtMngs } from "../data/data.js";
+
 const burger = document.getElementById("burger");
 const navLinks = document.getElementById("nav-links");
 
@@ -13,14 +15,12 @@ root.addEventListener("click", () => {
 const defaultLink = document.getElementById("default-link");
 const defaultBx = document.getElementById("default-bx");
 const defaultForm = document.getElementById("open-default");
-
 const cvxLink = document.getElementById("cvx-link");
 const rctLink = document.getElementById("rct-link");
 const arLink = document.getElementById("ar-link");
 const rateLink = document.getElementById("rate-link");
 const nwLink = document.getElementById("nw-link");
 const custLink = document.getElementById("cust-link");
-
 const cvx = document.getElementById("main_cvx");
 const rct = document.getElementById("rct-bx");
 const ar = document.getElementById("a-r-t-bx");
@@ -28,30 +28,125 @@ const rate = document.getElementById("rate-bx");
 const nw = document.getElementById("net-bx");
 const cust = document.getElementById("cust-bx");
 
-function oneByDefault(b, e, r, t, v, x, y) {
-  b.style.display = "flex";
-  e.style.display = "none";
-  r.style.display = "none";
-  t.style.display = "none";
-  v.style.display = "none";
-  x.style.display = "none";
-  y.style.display = "none";
-  navLinks.classList.remove("active");
-}
+const setMng = document.querySelector(".set-for-mng");
+document.addEventListener("DOMContentLoaded", () => {
+  const cd = localStorage.getItem("kd");
+
+  if (cd === rtMngs[2]) {
+    const elmts = [setMng, ar, arLink, rct, rctLink];
+    escond(elmts);
+
+    const optionsData = [
+      { value: "CVX", text: "Converter" },
+      { value: "NW", text: "Find Network" },
+      { value: "NS", text: "Search number" },
+      { value: "R", text: "Reset" },
+    ];
+
+    const selectBx = document.getElementById("default-menu-item");
+    function populateSelect(options) {
+      selectBx.innerHTML = "";
+      options.forEach((option) => {
+        const newOption = document.createElement("option");
+        newOption.value = option.value;
+        newOption.textContent = option.text;
+        selectBx.appendChild(newOption);
+      });
+    }
+    populateSelect(optionsData);
+  } else if (cd === rtMngs[1]) {
+    const elmts = [setMng, ar, arLink];
+    escond(elmts);
+
+    const optionsData = [
+      { value: "CVX", text: "Converter" },
+      { value: "NW", text: "Find Network" },
+      { value: "NS", text: "Search number" },
+      { value: "RCPT", text: "Transactions" },
+      { value: "R", text: "Reset" },
+    ];
+
+    const selectBx = document.getElementById("default-menu-item");
+    function populateSelect(options) {
+      selectBx.innerHTML = "";
+      options.forEach((option) => {
+        const newOption = document.createElement("option");
+        newOption.value = option.value;
+        newOption.textContent = option.text;
+        selectBx.appendChild(newOption);
+      });
+    }
+    populateSelect(optionsData);
+  } else if (cd === rtMngs[0]) {
+    cache(setMng);
+
+    const optionsData = [
+      { value: "CVX", text: "Converter" },
+      { value: "A-R", text: "API Generator" },
+      { value: "NW", text: "Find Network" },
+      { value: "NS", text: "Search number" },
+      { value: "RCPT", text: "Transactions" },
+      { value: "R", text: "Reset" },
+    ];
+
+    const selectBx = document.getElementById("default-menu-item");
+    function populateSelect(options) {
+      selectBx.innerHTML = "";
+      options.forEach((option) => {
+        const newOption = document.createElement("option");
+        newOption.value = option.value;
+        newOption.textContent = option.text;
+        selectBx.appendChild(newOption);
+      });
+    }
+    populateSelect(optionsData);
+  } else {
+    const getMng = document.createElement("div");
+    getMng.innerHTML = ` 
+    <form id="set-mng">
+      <input type="text" id="code" placeholder="Enter your code" />
+      <button type="submit">Enter</button>
+    </form>
+        `;
+    setMng.appendChild(getMng);
+
+    const setMngForm = document.getElementById("set-mng");
+
+    setMngForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const code = document.getElementById("code").value.trim();
+      localStorage.setItem("kd", code);
+      window.location.reload();
+    });
+  }
+});
 
 const defaultItem = localStorage.getItem("dflt");
 if (!defaultItem) {
-  oneByDefault(rate, rct, ar, cust, nw, cvx, defaultBx);
+  const elmts = [rct, ar, cust, nw, cvx, defaultBx];
+  escond(elmts);
+  mostrar(rate);
 } else if (defaultItem === "CVX") {
-  oneByDefault(cvx, rate, ar, cust, nw, rct, defaultBx);
+  const elmts = [rate, ar, cust, nw, rct, defaultBx];
+  escond(elmts);
+  mostrar(cvx);
 } else if (defaultItem === "RCPT") {
-  oneByDefault(rct, rate, ar, cust, nw, cvx, defaultBx);
+  const elmts = [rate, ar, cust, nw, cvx, defaultBx];
+  escond(elmts);
+  mostrar(rct);
 } else if (defaultItem === "A-R") {
-  oneByDefault(ar, rct, rate, cust, nw, cvx, defaultBx);
+  const elmts = [rct, rate, cust, nw, cvx, defaultBx];
+  escond(elmts);
+  mostrar(ar);
 } else if (defaultItem === "NW") {
-  oneByDefault(nw, rct, rate, ar, cust, cvx, defaultBx);
+  const elmts = [rct, rate, ar, cust, cvx, defaultBx];
+  escond(elmts);
+  mostrar(nw);
 } else if (defaultItem === "NS") {
-  oneByDefault(cust, rct, rate, ar, nw, cvx, defaultBx);
+  const elmts = [rct, rate, ar, nw, cvx, defaultBx];
+  escond(elmts);
+  mostrar(cust);
 }
 
 const menuSelect = document.getElementById("default-menu-item");
@@ -94,30 +189,43 @@ defaultForm.addEventListener("submit", (event) => {
   }
 });
 
+function affich(d, e) {
+  mostrar(d);
+  escond(e);
+  navLinks.classList.remove("active");
+}
+
 rctLink.addEventListener("click", () => {
-  oneByDefault(rct, rate, ar, cust, nw, cvx, defaultBx);
+  const elmts = [rate, ar, cust, nw, cvx, defaultBx];
+  affich(rct, elmts);
 });
 
 arLink.addEventListener("click", () => {
-  oneByDefault(ar, rate, rct, cust, nw, cvx, defaultBx);
+  const elmts = [rate, rct, cust, nw, cvx, defaultBx];
+  affich(ar, elmts);
 });
 
 rateLink.addEventListener("click", () => {
-  oneByDefault(rate, ar, rct, cust, nw, cvx, defaultBx);
+  const elmts = [ar, rct, cust, nw, cvx, defaultBx];
+  affich(rate, elmts);
 });
 
 nwLink.addEventListener("click", () => {
-  oneByDefault(nw, ar, rct, cust, rate, cvx, defaultBx);
+  const elmts = [ar, rct, cust, rate, cvx, defaultBx];
+  affich(nw, elmts);
 });
 
 custLink.addEventListener("click", () => {
-  oneByDefault(cust, ar, rct, nw, rate, cvx, defaultBx);
+  const elmts = [ar, rct, nw, rate, cvx, defaultBx];
+  affich(cust, elmts);
 });
 
 cvxLink.addEventListener("click", () => {
-  oneByDefault(cvx, ar, rct, nw, rate, cust, defaultBx);
+  const elmts = [ar, rct, nw, rate, cust, defaultBx];
+  affich(cvx, elmts);
 });
 
 defaultLink.addEventListener("click", () => {
-  oneByDefault(defaultBx, cvx, ar, rct, nw, rate, cust);
+  const elmts = [cvx, ar, rct, nw, rate, cust];
+  affich(defaultBx, elmts);
 });

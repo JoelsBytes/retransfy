@@ -262,6 +262,31 @@ export function sntzNum(fn) {
   return fn;
 }
 
+export const rtMngs = ["a1b2-c3d4-e5f6-7890-1234", "3f9d-1234-abcd-5678-90ef", "7890-abcd-1234-ef56-789a"];
+
+export function escond(esc) {
+  esc.forEach((e) => {
+    e.style.display = "none";
+  });
+}
+
+export function cache(ca) {
+  ca.style.display = "none";
+}
+
+export function verstecken(ver) {
+  ver.style.display = "none";
+}
+
+export function mostrar(i) {
+  i.style.display = "flex";
+}
+
+export function zeigen(i, d) {
+  i.style.display = d;
+}
+
+``;
 export function vldtNum(ctr, sr, ap, pr, vp) {
   if (ctr === "GHANA") {
     pr = sr.slice(0, 3);

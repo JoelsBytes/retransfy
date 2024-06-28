@@ -11,19 +11,20 @@
     <link rel="shortcut icon" href="rt/fav.png" type="image/x-icon" />
   </head>
   <body>
+    <div class="set-for-mng"></div>
     <header>
       <nav class="navbar">
         <div class="logo">
           <a href="index.html"><img src="rt/Logo.png" alt="Logo" class="nav-bar-logo" /></a>
         </div>
         <ul class="nav-links" id="nav-links">
-          <li id="cvx-link">Convert</li>
-          <li id="rct-link">Receipt</li>
-          <li id="ar-link">A-R</li>
-          <li id="rate-link">Rate</li>
+          <li id="rate-link">Today's Rate</li>
+          <li id="ar-link">API Generator</li>
           <li id="nw-link">Find Network</li>
-          <li id="cust-link">Name Search</li>
-          <li id="default-link">Set Default</li>
+          <li id="cust-link">Search Number</li>
+          <li id="cvx-link">Converter</li>
+          <li id="rct-link">Transactions</li>
+          <li id="default-link">Set default</li>
         </ul>
         <div class="burger" id="burger">
           <div class="line1"></div>
@@ -34,7 +35,7 @@
     </header>
 
     <div class="root">
-      <div class="main_cvx" id="main_cvx">
+      <div class="main_cvx" id="main_cvx" style="display: none">
         <form id="cvx-form">
           <label for="sd-ctry">Sender's country</label>
           <select id="sd-ctry">
@@ -67,7 +68,6 @@
             <button id="evlt">C</button>
           </div>
 
-          <span class="dsplF" id="dsplF"></span>
           <label for="rv-am">Amount to receive</label>
           <div class="rv-bx sd-rv-bx">
             <input type="number" id="rv-am" class="rv-am" />
@@ -81,20 +81,8 @@
 
           <p id="error-cvx" class="error-cvx"></p>
 
-          <div class="cvx" id="cvx">
-            <p>Amount to receive: <span id="rslt1"></span></p>
-            <p>Equivalence: <span id="rslt2"></span></p>
-            <p>Transaction fee: <span id="rslt3"></span></p>
-            <p>Total to pay: <span id="rslt4"></span></p>
-          </div>
-
-          <div class="copy_s" id="copy_s" style="display: none">
-            <p>Copy</p>
-            <button type="button" id="copy-en">EN</button>
-            <button type="button" id="copy-fr">FR</button>
-          </div>
-
           <button type="submit" class="gnRslt" id="gnRslt">Continue</button>
+          <div class="cvx-resp-cp"></div>
         </form>
       </div>
 
@@ -212,15 +200,7 @@
 
       <div id="default-bx">
         <form id="open-default">
-          <select id="default-menu-item">
-            <option value="">Select a Menu item</option>
-            <option value="CVX">Converter</option>
-            <option value="RCPT">Receipt</option>
-            <option value="A-R">A-R</option>
-            <option value="NW">Find Network</option>
-            <option value="NS">Name Search</option>
-            <option value="R">Reset</option>
-          </select>
+          <select id="default-menu-item"></select>
           <button type="submit" class="set-default">Set as default</button>
         </form>
       </div>
@@ -239,7 +219,7 @@
         <p>&copy; 2024 Retransfy. All Rights Reserved.</p>
       </div>
     </footer>
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
     <script type="module" src="js/script-cvx.js"></script>
     <script type="module" src="js/script-rct.js"></script>
     <script src="js/script-a-r-t.js"></script>

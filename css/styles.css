@@ -206,6 +206,13 @@
   margin-top: 5px;
 }
 
+.cvx-resp-cp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .cvx {
   display: flex;
   flex-direction: column;

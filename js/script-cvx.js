@@ -1,7 +1,7 @@
-import { ax as ghsToXof, bx as xofToGhs, calcF, calcW, decP, decD, isTwoDec } from "../data/data.js";
+import { ax as ghsToXof, bx as xofToGhs, calcF, calcW, decP, isTwoDec } from "../data/data.js";
 
+const cvxRespCp = document.querySelector(".cvx-resp-cp");
 const gnRslt = document.getElementById("gnRslt");
-const dsplF = document.getElementById("dsplF");
 const sdRvBxs = document.querySelectorAll(".sd-rv-bx");
 const sdCrxy = document.getElementById("sd-crxy");
 const rvCrxy = document.getElementById("rv-crxy");
@@ -10,21 +10,14 @@ let rvInputEl = document.getElementById("rv-am");
 const sdSelectEl = document.getElementById("sd-ctry");
 const rvSelectEl = document.getElementById("rv-ctry");
 let cvxErr = document.getElementById("error-cvx");
-let cvx = document.getElementById("cvx");
 let sdc = document.getElementById("sd-ctry").value;
 let rvc = document.getElementById("rv-ctry").value;
 let amTS = parseFloat(document.getElementById("sd-am").value);
 let amTR = parseFloat(document.getElementById("rv-am").value);
 let trF;
 let wdF;
-const copy = document.getElementById("copy-en");
-const copier = document.getElementById("copy-fr");
-const copyWrap = document.getElementById("copy_s");
 
-copyWrap.style.display = "none";
 cvxErr.style.display = "none";
-cvx.style.display = "none";
-dsplF.style.display = "none";
 gnRslt.classList.remove("active");
 gnRslt.disabled = true;
 
@@ -41,13 +34,10 @@ function sdcSelectErr() {
   gnRslt.disabled = true;
   gnRslt.classList.remove("active");
   gnRslt.style.display = "block";
-  dsplF.style.display = "none";
-  cvx.style.display = "none";
-  copyWrap.style.display = "none";
+  cvxRespCp.innerHTML = "";
 }
 
 function inputError() {
-  dsplF.classList.add("off");
   sdRvBxs.forEach((sdRvBx) => {
     sdRvBx.classList.add("input_stop");
   });
@@ -57,8 +47,7 @@ function inputError() {
   gnRslt.classList.remove("active");
   cvxErr.style.display = "block";
   cvxErr.innerText = `Invalid amount`;
-  cvx.style.display = "none";
-  copyWrap.style.display = "none";
+  cvxRespCp.innerHTML = "";
 }
 
 function clearErr() {
@@ -67,14 +56,13 @@ function clearErr() {
   });
   sdInputEl.disabled = false;
   rvInputEl.disabled = false;
-  cvx.style.display = "none";
   cvxErr.style.display = "none";
-  copyWrap.style.display = "none";
   gnRslt.disabled = false;
   gnRslt.classList.add("active");
   gnRslt.style.display = "block";
   localStorage.removeItem("Amount");
   wdCheck.checked = false;
+  cvxRespCp.innerHTML = "";
 }
 
 function sdSelectElChange() {
@@ -83,7 +71,6 @@ function sdSelectElChange() {
 
   gnRslt.disabled = true;
   gnRslt.classList.remove("active");
-  dsplF.style.display = "none";
 
   if (sdc === "GHANA" && rvc !== "GHANA") {
     sdInputEl.value = "";
@@ -110,7 +97,6 @@ function rvSelectElChange() {
 
   gnRslt.disabled = true;
   gnRslt.classList.remove("active");
-  dsplF.style.display = "none";
 
   if (sdc === "GHANA" && rvc !== "GHANA") {
     sdInputEl.value = "";
@@ -162,16 +148,13 @@ function CalcAmTR() {
     rvInputEl.value = amTR;
     sdCrxy.innerText = "GHS";
     rvCrxy.innerText = "FCFA";
-    dsplF.style.display = "block";
-    dsplF.innerText = `Retransfy fee: GHS ${trF.toFixed(2)}`;
+    // dsplF.innerText = `Retransfy fee: GHS ${trF.toFixed(2)}`;
     clearErr();
   } else if (sdc !== "GHANA" && rvc === "GHANA" && amTS >= 1000 && amTS < 90000000 && validAmount) {
-    amTR = parseFloat(decD((amTS / 1000) * xofToGhs)).toFixed(2);
+    amTR = parseFloat(decP((amTS / 1000) * xofToGhs)).toFixed(2);
     rvInputEl.value = amTR;
     sdCrxy.innerText = "FCFA";
     rvCrxy.innerText = "GHS";
-    dsplF.style.display = "block";
-    dsplF.innerText = `Retransfy fee: ${trF.toLocaleString("fr-FR")} FCFA`;
     clearErr();
   } else {
     rvInputEl.value = "";
@@ -198,7 +181,6 @@ function CalcAmTS() {
     sdInputEl.value = amTS.toFixed(2);
     sdCrxy.innerText = "GHS";
     rvCrxy.innerText = "FCFA";
-    dsplF.style.display = "none";
     clearErr();
   } else if (sdc !== "GHANA" && rvc === "GHANA" && amTR >= xofToGhs && amTS < 90000000 && validAmount) {
     amTS = Math.ceil((amTR / xofToGhs) * 1000);
@@ -206,7 +188,6 @@ function CalcAmTS() {
     rvc === "GHANA";
     sdCrxy.innerText = "FCFA";
     rvCrxy.innerText = "GHS";
-    dsplF.style.display = "none";
     clearErr();
   } else {
     sdInputEl.value = "";
@@ -258,19 +239,23 @@ wdCheck.addEventListener("change", () => {
     actualAmount = parseFloat(amTR) + wdF;
     rvInputEl.value = actualAmount;
     gnRslt.style.display = "block";
+    cvxRespCp.innerHTML = "";
     run();
   } else {
     actualAmount = localStorage.getItem("Amount", amTR);
     rvInputEl.value = actualAmount;
     gnRslt.style.display = "block";
+    cvxRespCp.innerHTML = "";
     run();
   }
-  copyWrap.style.display = "none";
-  cvx.style.display = "none";
 });
 
-let forCopy = "";
-function applyCvx() {
+gnRslt.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  gnRslt.style.display = "none";
+
+  let forCopy = "";
   const currentDate = new Date();
   const day = String(currentDate.getDate()).padStart(2, "0");
   const month = String(currentDate.getMonth() + 1).padStart(2, "0");
@@ -285,86 +270,94 @@ function applyCvx() {
 
   let totalToPay = amTS + trF;
   cvxErr.style.display = "none";
-  dsplF.style.display = "none";
-  copyWrap.style.display = "flex";
-  copy.textContent = "EN";
-  copier.textContent = "FR";
-  cvx.style.display = "flex";
 
-  document.getElementById("rslt1").textContent = `${sdc === "GHANA" ? amTR.toLocaleString("fr-FR") + " FCFA" : "GHS " + amTR.toFixed(2)}`;
-  document.getElementById("rslt2").textContent = `${sdc === "GHANA" ? "GHS " + amTS.toFixed(2) : amTS.toLocaleString("fr-FR") + " FCFA"}`;
-  document.getElementById("rslt3").textContent = `${sdc === "GHANA" ? "GHS " + trF.toFixed(2) : trF.toLocaleString("fr-FR") + " FCFA"}`;
-  document.getElementById("rslt4").textContent = `${sdc === "GHANA" ? "GHS " + totalToPay.toFixed(2) : totalToPay.toLocaleString("fr-FR") + " FCFA"}`;
+  const cvxResp = document.createElement("div");
+  cvxResp.className = "cvx";
+  cvxResp.id = "cvx";
+  cvxRespCp.appendChild(cvxResp);
+  cvxResp.innerHTML = `
+<p>Amount to receive: <span id="rslt1">${sdc === "GHANA" ? amTR.toLocaleString("fr-FR") + " FCFA" : "GHS " + amTR.toFixed(2)}</span></P>
+<p>Equivalence: <span id="rslt2">${sdc === "GHANA" ? "GHS " + amTS.toFixed(2) : amTS.toLocaleString("fr-FR") + " FCFA"}</span></p>
+<p>Transaction fee: <span id="rslt3">${sdc === "GHANA" ? "GHS " + trF.toFixed(2) : trF.toLocaleString("fr-FR") + " FCFA"}</span></p>
+<p>Total to pay: <span id="rslt4">${sdc === "GHANA" ? "GHS " + totalToPay.toFixed(2) : totalToPay.toLocaleString("fr-FR") + " FCFA"}</span></p>
+`;
 
-  return (forCopy = `${sdc} to ${rvc}
+  const copyDiv = document.createElement("div");
+  copyDiv.className = "copy_s";
+  copyDiv.id = "copy_s";
+  copyDiv.innerHTML = `
+<p>Copy</p>
+<button type="button" id="copy-en">EN</button>
+<button type="button" id="copy-fr">FR</button>
+`;
+
+  cvxRespCp.appendChild(copyDiv);
+
+  forCopy = `${sdc} to ${rvc}
 ${formattedDate} || Rate: ${sdc === "GHANA" ? ghsToXof : xofToGhs}
 
 Amount to receive: ${sdc === "GHANA" ? amTR.toLocaleString("fr-FR") + " FCFA" : "GHS " + amTR.toFixed(2)}
 Equivalence: ${sdc === "GHANA" ? "GHS " + amTS.toFixed(2) : amTS.toLocaleString("fr-FR") + " FCFA"}
 Transaction fee: ${sdc === "GHANA" ? "GHS " + trF.toFixed(2) : trF.toLocaleString("fr-FR") + " FCFA"}
-Total to Pay: ${sdc === "GHANA" ? "GHS " + totalToPay.toFixed(2) : totalToPay.toLocaleString("fr-FR") + " FCFA"}`);
-}
+Total to Pay: ${sdc === "GHANA" ? "GHS " + totalToPay.toFixed(2) : totalToPay.toLocaleString("fr-FR") + " FCFA"}`;
 
-gnRslt.addEventListener("click", (event) => {
-  event.preventDefault();
-  applyCvx();
-  gnRslt.style.display = "none";
-});
+  const copy = document.getElementById("copy-en");
+  const copier = document.getElementById("copy-fr");
+  copy.addEventListener("click", async function () {
+    const text = forCopy;
+    const paragrafs = text.split("\n");
 
-copy.addEventListener("click", async function () {
-  const text = forCopy;
-  const paragrafs = text.split("\n");
+    const originalText = paragrafs
+      .map((paragraf, index) => {
+        if (paragraf.includes("Amount to receive") || paragraf.includes("Total to Pay")) {
+          return `*${paragraf}*`;
+        }
+        return paragraf;
+      })
+      .join("\n");
 
-  const originalText = paragrafs
-    .map((paragraf, index) => {
-      if (paragraf.includes("Amount to receive") || paragraf.includes("Total to Pay")) {
-        return `*${paragraf}*`;
+    try {
+      await navigator.clipboard.writeText(originalText);
+    } catch (err) {}
+    copy.textContent = "✔";
+  });
+
+  copier.addEventListener("click", async function () {
+    const text = forCopy;
+    const lines = text.split("\n");
+
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      switch (i) {
+        case 0:
+          line = line.replace(/to/g, "vers").replace(/IVORY COAST/g, "CÔTE D'IVOIRE");
+          break;
+        case 1:
+          line = line.replace(/Rate:/g, "Taux:");
+          break;
+        default:
+          line = line
+            .replace(/Amount to receive/g, "Montant à recevoir")
+            .replace(/Equivalence/g, "Équivalence")
+            .replace(/Transaction fee/g, "Frais de transaction")
+            .replace(/Total to Pay/g, "Total à payer");
+          break;
       }
-      return paragraf;
-    })
-    .join("\n");
-
-  try {
-    await navigator.clipboard.writeText(originalText);
-  } catch (err) {}
-  copy.textContent = "✔";
-});
-
-copier.addEventListener("click", async function () {
-  const text = forCopy;
-  const lines = text.split("\n");
-
-  for (let i = 0; i < lines.length; i++) {
-    let line = lines[i];
-    switch (i) {
-      case 0:
-        line = line.replace(/to/g, "vers").replace(/IVORY COAST/g, "CÔTE D'IVOIRE");
-        break;
-      case 1:
-        line = line.replace(/Rate:/g, "Taux:");
-        break;
-      default:
-        line = line
-          .replace(/Amount to receive/g, "Montant à recevoir")
-          .replace(/Equivalence/g, "Équivalence")
-          .replace(/Transaction fee/g, "Frais de transaction")
-          .replace(/Total to Pay/g, "Total à payer");
-        break;
+      lines[i] = line;
     }
-    lines[i] = line;
-  }
-  const translatedText = lines
-    .map((line, index) => {
-      if (line.includes("Montant à recevoir") || line.includes("Total à payer")) {
-        return `*${line}*`;
-      }
-      return line;
-    })
-    .join("\n");
+    const translatedText = lines
+      .map((line, index) => {
+        if (line.includes("Montant à recevoir") || line.includes("Total à payer")) {
+          return `*${line}*`;
+        }
+        return line;
+      })
+      .join("\n");
 
-  try {
-    await navigator.clipboard.writeText(translatedText);
-  } catch (err) {}
+    try {
+      await navigator.clipboard.writeText(translatedText);
+    } catch (err) {}
 
-  copier.textContent = "✔";
+    copier.textContent = "✔";
+  });
 });
