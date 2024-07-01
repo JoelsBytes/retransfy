@@ -225,7 +225,7 @@ function runRCT(se, re) {
     if (a && sdRctry !== "GHANA") {
       sdR = pn;
     }
-    trxFee = 0;
+
     let tlPaid = amTsd + trxFee;
     const resp = document.getElementById("resp");
     if (sdRctry === "GHANA" && rvRctry !== "GHANA") {

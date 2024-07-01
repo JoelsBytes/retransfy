@@ -274,8 +274,6 @@ gnRslt.addEventListener("click", (event) => {
   amTR = parseFloat(document.getElementById("rv-am").value);
   trF = calcF(amTS, sdc, rvc);
 
-  trF = 0;
-
   let totalToPay = amTS + trF;
   cvxErr.style.display = "none";
 
