@@ -225,18 +225,21 @@ function runRCT(se, re) {
     if (a && sdRctry !== "GHANA") {
       sdR = pn;
     }
-trxFee = 0;
-    
-let tlPaid = amTsd + trxFee;
+    trxFee = 0;
+    let tlPaid = amTsd + trxFee;
     const resp = document.getElementById("resp");
     if (sdRctry === "GHANA" && rvRctry !== "GHANA") {
       resp.innerHTML = `Transaction successful via Retransfy.
 You've sent ${amRcv.toLocaleString("fr-FR")} FCFA to ${rvR}${rc.toUpperCase()} at a rate of ${ghXof} | ${sdRctry} to ${rvRctry}${acct};
-${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of GHS ${tlPaid.toFixed(2)}, including a transaction fee of GHS ${trxFee.toFixed(2)} via ${pm} - ${sdR}${sd.toUpperCase()}.`;
+${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of GHS ${tlPaid.toFixed(
+        2
+      )}, including a transaction fee of GHS ${trxFee.toFixed(2)} via ${pm} - ${sdR}${sd.toUpperCase()}.`;
     } else if (sdRctry !== "GHANA" && rvRctry === "GHANA") {
       resp.innerHTML = `Transaction successful via Retransfy.
 You've sent GHS ${amRcv.toFixed(2)} to ${rvR}${rc.toUpperCase()} at a rate of ${xofgh} | ${sdRctry} to ${rvRctry}${acct};
-${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of ${tlPaid.toLocaleString("fr-FR")} FCFA, including a transaction fee of ${trxFee.toLocaleString("fr-FR")} FCFA via ${sdR}${sd.toUpperCase()}.`;
+${formattedDate} | ${time} | Transaction ID: ${trx}. You paid a total of ${tlPaid.toLocaleString(
+        "fr-FR"
+      )} FCFA, including a transaction fee of ${trxFee.toLocaleString("fr-FR")} FCFA via ${sdR}${sd.toUpperCase()}.`;
     }
 
     copyButton.classList.remove("copyChange");

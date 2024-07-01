@@ -26,7 +26,7 @@ body {
   align-items: center;
 }
 
-#setAdmin {
+#set-mng {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -166,7 +166,7 @@ header {
  */
 
 .root {
-  flex: 1;
+  /* flex: 1; */
   height: 100%;
 }
 

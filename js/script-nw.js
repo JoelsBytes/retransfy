@@ -100,7 +100,7 @@ netForm.addEventListener("submit", (event) => {
 
   if (netCtry === "BENIN") {
     const prefix = netFn.slice(0, 2);
-    const mtnPrefixes = ["96", "97", "91", "61", "62", "66", "67", "69", "52", "54", "55", "56"];
+    const mtnPrefixes = ["96", "97", "91", "61", "62", "66", "67", "69", "52", "54", "55", "56", "57"];
     const moovPrefixes = ["95", "94", "98", "99", "60", "63", "64", "65", "68"];
 
     if (netFn.length < 8 || netFn.length > 8) {

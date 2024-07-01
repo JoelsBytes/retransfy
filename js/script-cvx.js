@@ -17,6 +17,8 @@ let amTR = parseFloat(document.getElementById("rv-am").value);
 let trF;
 let wdF;
 
+const fPreview = document.querySelector(".f-preview-bx");
+
 cvxErr.style.display = "none";
 gnRslt.classList.remove("active");
 gnRslt.disabled = true;
@@ -48,6 +50,7 @@ function inputError() {
   cvxErr.style.display = "block";
   cvxErr.innerText = `Invalid amount`;
   cvxRespCp.innerHTML = "";
+  fPreview.innerHTML = "";
 }
 
 function clearErr() {
@@ -71,7 +74,7 @@ function sdSelectElChange() {
 
   gnRslt.disabled = true;
   gnRslt.classList.remove("active");
-
+  fPreview.innerHTML = "";
   if (sdc === "GHANA" && rvc !== "GHANA") {
     sdInputEl.value = "";
     rvInputEl.value = "";
@@ -94,7 +97,7 @@ function sdSelectElChange() {
 function rvSelectElChange() {
   sdc = document.getElementById("sd-ctry").value;
   rvc = document.getElementById("rv-ctry").value;
-
+  fPreview.innerHTML = "";
   gnRslt.disabled = true;
   gnRslt.classList.remove("active");
 
@@ -148,13 +151,14 @@ function CalcAmTR() {
     rvInputEl.value = amTR;
     sdCrxy.innerText = "GHS";
     rvCrxy.innerText = "FCFA";
-    // dsplF.innerText = `Retransfy fee: GHS ${trF.toFixed(2)}`;
+    fPreview.innerHTML = `<span class="f-preview">Retransfy fee: GHS ${trF.toFixed(2)}</span>`;
     clearErr();
   } else if (sdc !== "GHANA" && rvc === "GHANA" && amTS >= 1000 && amTS < 90000000 && validAmount) {
     amTR = parseFloat(decP((amTS / 1000) * xofToGhs)).toFixed(2);
     rvInputEl.value = amTR;
     sdCrxy.innerText = "FCFA";
     rvCrxy.innerText = "GHS";
+    fPreview.innerHTML = `<span class="f-preview">Retransfy fee: GHS ${trF.toFixed(2)}</span>`;
     clearErr();
   } else {
     rvInputEl.value = "";
@@ -169,6 +173,7 @@ function CalcAmTS() {
   amTR = document.getElementById("rv-am").value;
   trF = calcF(amTS, sdc, rvc);
 
+  fPreview.innerHTML = "";
   const validAmount = isTwoDec(amTR);
 
   if (!validAmount) {
@@ -227,6 +232,7 @@ function run() {
 
 const wdCheck = document.getElementById("wdF");
 wdCheck.addEventListener("change", () => {
+  fPreview.innerHTML = "";
   let actualAmount = 0;
   wdF = calcW(amTR, sdc, rvc);
   if (!amTR && !amTR) {
@@ -267,6 +273,7 @@ gnRslt.addEventListener("click", (event) => {
   amTS = parseFloat(document.getElementById("sd-am").value);
   amTR = parseFloat(document.getElementById("rv-am").value);
   trF = calcF(amTS, sdc, rvc);
+
   trF = 0;
 
   let totalToPay = amTS + trF;
