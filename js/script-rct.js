@@ -178,7 +178,6 @@ function runRCT(se, re) {
 
     let trxFee = calcF(amTsd, sdRctry, rvRctry);
 
-    let tlPaid = amTsd + trxFee;
     if (rvRctry === "TOGO") {
       rvR = "+228" + rvR;
     } else if (rvRctry === "BENIN") {
@@ -227,6 +226,8 @@ function runRCT(se, re) {
       sdR = pn;
     }
 trxFee = 0;
+    
+let tlPaid = amTsd + trxFee;
     const resp = document.getElementById("resp");
     if (sdRctry === "GHANA" && rvRctry !== "GHANA") {
       resp.innerHTML = `Transaction successful via Retransfy.
